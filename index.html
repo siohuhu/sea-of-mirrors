@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sea of Mirrors</title>
+<style>
+body {
+  background:#e8e4dc;
+  text-align:center;
+  font-family:serif;
+  padding:20px;
+}
+button {
+  padding:12px;
+  margin:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Sea of Mirrors</h2>
+
+<button onclick="draw()">Draw Card</button>
+
+<div id="result"></div>
+
+<script>
+const cards = [
+  {name:"The Fool", text:"A new journey"},
+  {name:"The Moon", text:"Illusion"},
+  {name:"The Star", text:"Hope"}
+];
+
+function draw(){
+  const c = cards[Math.floor(Math.random()*cards.length)];
+  document.getElementById("result").innerHTML =
+    "<h3>"+c.name+"</h3><p>"+c.text+"</p>";
+}
+</script>
+
+</body>
+</html>

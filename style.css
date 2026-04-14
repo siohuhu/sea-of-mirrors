@@ -1,0 +1,21 @@
+body {
+  background: #e8e4dc;
+  color: #2f2f2f;
+  font-family: serif;
+  text-align: center;
+  padding: 50px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  background: #6c7a6b;
+  color: white;
+  cursor: pointer;
+}
+
+#result {
+  margin-top: 30px;
+  font-size: 18px;
+}
