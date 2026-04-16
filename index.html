@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -13,21 +14,21 @@
    Stone Lion: dark charcoal, stone-green-grey, dry gold, rose-pink
 ═══════════════════════════════════════ */
 :root {
-  /* Backgrounds */
-  --fog-white:   #ede9e1;
-  --mist:        #e4e0d9;
-  --parchment:   #ddd9d1;
-  --veil:        #d3d0c9;
+  /* Backgrounds — lightened 20% */
+  --fog-white:   #f0ede7;
+  --mist:        #e9e6e0;
+  --parchment:   #e3e0da;
+  --veil:        #dbd9d3;
 
   /* Stones & Darks (from stone lion) */
   --stone-dark:  #3b3d3b;
   --stone-mid:   #5a5c58;
   --stone-light: #8a8c88;
 
-  /* Cool greys (feather figure atmosphere) */
-  --fog-cool:    #d0d2dd;
-  --fog-blue:    #bec6d0;
-  --dove:        #e0e3e9;
+  /* Cool greys — lightened 20% */
+  --fog-cool:    #d9dbe3;
+  --fog-blue:    #cbd1d9;
+  --dove:        #e6e8ed;
 
   /* Warm accents (dry branches, bone) */
   --gold-dry:    #b6a990;
@@ -38,11 +39,11 @@
   --rose-dry:    #b09090;
   --pink-pale:   #c4a8a8;
 
-  /* Text */
-  --ink:         #26241d;
-  --ink-mid:     #383631;
-  --ink-soft:    #56534c;
-  --ink-ghost:   #827e77;
+  /* Text — darkened 10% */
+  --ink:         #22201a;
+  --ink-mid:     #32302c;
+  --ink-soft:    #4d4a44;
+  --ink-ghost:   #75716b;
 
   /* Borders */
   --line:        rgba(58,56,50,.15);
@@ -105,12 +106,13 @@ body::after {
 
 /* ═══════════════ COVER PAGE ═══════════════ */
 #cover { text-align:center; padding:72px 0 60px; }
-
 /* Atmospheric SVG illustration */
 .cover-art {
   width: 260px; height: 130px;
   margin: 0 auto 40px;
   display: block;
+  object-fit: cover;
+  filter: saturate(0.9) contrast(0.95);
 }
 
 .eyebrow {
