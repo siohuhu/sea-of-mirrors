@@ -349,7 +349,7 @@ body::after {
   position: relative;
 }
 .mirror-box::before {
-  content: '鏡 · 電話亭留言';
+  content: '鏡 · 電話留言';
   position: absolute; top: -9px; left: 14px;
   background: var(--parchment);
   font-family: 'Noto Serif TC', serif;
@@ -600,8 +600,9 @@ body::after {
 
     <p class="cover-note">
       旅人配對測試 · 共 8 題<br>
-      測試結果將協助遊戲開發團隊了解玩家情感類型分佈，<br>
+      測試結果將協助遊戲開發了解玩家情感類型分佈，<br>
       作為美術風格與遊戲體驗設計的參考依據。
+      Contact Info:siohuhu.studio@gmail.com
     </p>
 
     <button class="btn-start" onclick="startQuiz()"><span>踏入霧中 · 開始測試</span></button>
@@ -655,9 +656,9 @@ body::after {
   </div>
 
   <div class="pg-footer">
-    Sea of Mirrors · 鏡之海 &nbsp;·&nbsp; 遊戲概念測試 v0.1<br>
-    美術參考：或る旅人の日記 (Tortov Roddle) · 概念插圖：石獅與羽毛旅人<br>
-    音樂參考：紀念碑谷 · Journey · 手風琴
+    Sea of Mirrors · 鏡之海 &nbsp;·&nbsp; 遊戲概念測試 v0.2<br>
+    美術參考：Journey  · 概念插圖：黑獅子與白鴿和流浪旅人<br>
+    音樂參考：Journey · nop
   </div>
 
 </div><!-- /page -->
@@ -696,7 +697,7 @@ var QS=[
     ]
   },
   {
-    q:'夜裡你聽見電話亭的鈴聲。你接起來，聽見——',
+    q:'夜裡你聽見電話的鈴聲。你接起來，聽見——',
     opts:[
       {t:'自己的聲音說：「我還在這裡。」',       e:'stone'},
       {t:'自己的聲音說：「你應該繼續走。」',     e:'bird'},
@@ -921,7 +922,7 @@ function renderDataPanel(){
 /* ─────────── EXPORT JSON ─────────── */
 function exportJSON(){
   var payload={
-    meta:{name:'Sea of Mirrors · 鏡之海 · 旅人配對測試 v0.1',ts:new Date().toISOString()},
+    meta:{name:'Sea of Mirrors · 鏡之海 · 旅人配對測試 v0.2',ts:new Date().toISOString()},
     result:{key:session.result.key,zh:AR[session.result.key].zh,scores:session.result.scores,totalSec:Math.round(session.result.totalMs/1000)},
     answers:session.answers.map(function(a){return{q:a.q,type:a.choice,sec:Math.round(a.ms/1000),text:a.text};}),
     timing:{perQuestionSec:session.qTimes.map(function(t){return Math.round(t/1000);}),avgSec:Math.round(session.qTimes.reduce(function(a,b){return a+b;},0)/session.qTimes.length/1000)}
@@ -939,7 +940,7 @@ var musicReady   = false;
 var hintTimer    = null;
 
 // ★ CHANGE THIS to your actual audio file path when deployed
-var AUDIO_SRC = 'music/Nop.mp3';
+var AUDIO_SRC = 'music/Tortov.mp3';
 
 function initAudio() {
   var audio = document.getElementById('bgAudio');
