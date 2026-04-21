@@ -38,7 +38,7 @@
 
 <!--
   ═══════════════════════════════════════════════════
-  MUSIC COPYRIGHT
+  MUSIC COPYRIGHT / 音樂版權聲明
   ═══════════════════════════════════════════════════
   Track title  : Misty lake
   Composer     : HarumachiMusic 
@@ -153,9 +153,7 @@ body::after {
 
 /* Atmospheric SVG illustration */
 .cover-art {
-  width: 260px; height: 130px;
-  margin: 0 auto 40px;
-  display: block;
+  filter: brightness(1.05) contrast(0.9) saturate(0.8);
 }
 
 .eyebrow {
@@ -395,7 +393,6 @@ body::after {
   position: relative;
 }
 .mirror-box::before {
-  content: '鏡 · 電話亭留言';
   position: absolute; top: -9px; left: 14px;
   background: var(--parchment);
   font-family: 'Noto Serif TC', serif;
@@ -436,79 +433,6 @@ body::after {
 .btn:hover { background: var(--ink); color: var(--fog-white); }
 .btn.dark { background: var(--stone-dark); color: var(--fog-white); border-color: var(--stone-dark); }
 .btn.dark:hover { background: var(--stone-mid); }
-.btn.share {
-  background: var(--gold-dry); color: var(--fog-white);
-  border-color: var(--gold-dry);
-}
-.btn.share:hover { background: var(--warm-grey); border-color: var(--warm-grey); }
-.btn.share:disabled { opacity:.55; cursor:default; }
-.btn.fb {
-  background: #4267b2; color: #fff; border-color: #4267b2;
-  letter-spacing: .06em;
-}
-.btn.fb:hover { background: #365899; border-color: #365899; }
-.share-hint {
-  text-align:center; font-size:.68rem; color:var(--ink-ghost);
-  font-style:italic; margin-top:8px; letter-spacing:.04em; line-height:1.7;
-}
-
-/* ── SHARE CARD (captured by html2canvas) ── */
-.share-card-hidden {
-  position: absolute;
-  left: -9999px; top: -9999px;
-  width: 1080px; height: 1080px;
-  overflow: hidden;
-  background: var(--fog-white);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: flex-start;
-  font-family: 'Noto Serif TC', serif;
-}
-.sc-bar {
-  width: 100%; height: 8px; flex-shrink: 0;
-}
-.sc-icon {
-  width: 100%; flex: 0 0 380px;
-  display: flex; align-items: center; justify-content: center;
-}
-.sc-icon svg { width: 200px; height: 200px; }
-.sc-rule {
-  width: 80%; height: 1px;
-  background: rgba(182,160,120,.4);
-  margin: 18px 0;
-  flex-shrink: 0;
-}
-.sc-en {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300; font-size: 72px;
-  color: var(--ink); letter-spacing: .08em;
-  text-align: center; margin-top: 12px;
-  line-height: 1.1;
-}
-.sc-zh {
-  font-family: 'Noto Serif TC', serif;
-  font-weight: 300; font-size: 32px;
-  letter-spacing: .28em; color: var(--ink-soft);
-  text-align: center; margin-top: 10px;
-}
-.sc-tarot {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic; font-size: 26px;
-  color: var(--gold-dry); text-align: center;
-  margin-top: 10px; letter-spacing: .06em;
-}
-.sc-mirror {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic; font-size: 28px;
-  color: var(--ink-mid); text-align: center;
-  max-width: 860px; line-height: 1.7;
-  margin-top: 10px; padding: 0 60px;
-}
-.sc-watermark {
-  margin-top: auto; padding-bottom: 40px;
-  font-size: 20px; color: var(--ink-ghost);
-  font-style: italic; letter-spacing: .08em;
-  opacity: .5;
-}
 
 /* ═══════════════ DATA PANEL ═══════════════ */
 #data-panel { display:none; margin-top:36px; }
@@ -757,10 +681,17 @@ body::after {
         <b>📊 數據說明：</b>你的選擇已匿名記錄於本次會話。包含題目選擇、反應時間、旅人類型。
         不收集任何個人識別資料。點擊「查看數據」可下載完整 JSON。
       </div>
+       <!-- hidden canvas for image export -->
+      <canvas id="shareCanvas" style="display:none;"></canvas>
+
       <div class="r-actions">
         <button class="btn" onclick="restartQuiz()">重新測試</button>
+        <button class="btn share" onclick="exportShareImage()" id="shareBtn">
+          <span id="shareBtnTxt">↓ 下載分享圖</span>
+        </button>
         <button class="btn dark" onclick="toggleData()">查看數據</button>
       </div>
+      <p class="share-hint">1080×1080 · 適合 Instagram / LINE / 小紅書</p>
     </div>
   </div>
 
@@ -775,7 +706,7 @@ body::after {
   </div>
 
   <div class="pg-footer">
-    Sea of Mirrors · 鏡之海 &nbsp;·&nbsp; 遊戲概念測試 v0.42<br>
+    Sea of Mirrors · 鏡之海 &nbsp;·&nbsp; 遊戲概念測試 v0.4<br>
     美術參考：Monument Valley<br>
     概念插圖：黑獅子與白鴿和流浪旅人 by Zhen.(siohuhu)<br>
     Music：misty lake by HarumachiMusic 
@@ -1245,3 +1176,4 @@ function shareFacebook() {
 </script>
 </body>
 </html>
+
