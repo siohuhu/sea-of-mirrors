@@ -9,15 +9,15 @@
 <meta name="description" content="它不是「我們的海」，而是「鏡之海」。你在大霧中沿著海岸探索，然而除了恐懼未知外，別無他物。8 題旅人配對測試，找到你在鏡之海的位置。">
 <meta name="keywords" content="Sea of Mirrors, 鏡之海, 遊戲, 配對測試, 旅人, 塔羅, 互動">
 <meta name="author" content="Sea of Mirrors">
-<link rel="canonical" href="https://YOUR_USERNAME.github.io/sea-of-mirrors/">
+<link rel="canonical" href="https://siohuhu.github.io/sea-of-mirrors/">
 
 <!-- ═══ OPEN GRAPH — Facebook, LINE, Instagram, Discord ═══ -->
 <meta property="og:type"        content="website">
 <meta property="og:site_name"   content="Sea of Mirrors · 鏡之海">
 <meta property="og:title"       content="Sea of Mirrors · 鏡之海 — 你是哪一種旅人？">
 <meta property="og:description" content="它不是「我們的海」，而是「鏡之海」。8 題旅人配對測試，找到你在大霧海岸的位置。">
-<meta property="og:url"         content="https://YOUR_USERNAME.github.io/sea-of-mirrors/">
-<meta property="og:image"       content="https://YOUR_USERNAME.github.io/sea-of-mirrors/og-image.png">
+<meta property="og:url"         content="https://siohuhu.github.io/sea-of-mirrors/">
+<meta property="og:image"       content="https://siohuhu.github.io/sea-of-mirrors/og-image.png">
 <meta property="og:image:width"  content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt"    content="Sea of Mirrors — 霧岸場景，孤獨旅人，旅人配對測試">
@@ -27,7 +27,7 @@
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:title"       content="Sea of Mirrors · 鏡之海 — 你是哪一種旅人？">
 <meta name="twitter:description" content="它不是「我們的海」，而是「鏡之海」。8 題旅人配對測試。">
-<meta name="twitter:image"       content="https://YOUR_USERNAME.github.io/sea-of-mirrors/og-image.png">
+<meta name="twitter:image"       content="https://siohuhu.github.io/sea-of-mirrors/og-image.png">
 <meta name="twitter:image:alt"   content="Sea of Mirrors 旅人配對測試">
 
 <!-- ═══ LINE / iOS / Android ═══ -->
@@ -38,19 +38,17 @@
 
 <!--
   ═══════════════════════════════════════════════════
-  MUSIC COPYRIGHT / 音樂版權聲明
+  MUSIC COPYRIGHT
   ═══════════════════════════════════════════════════
-  Track title  : [曲目名稱]
-  Composer     : [作曲者姓名]
-  Source       : [來源網址，例如 freesound.org/s/123456]
-  License      : [授權類型，例如 CC0 1.0 / CC BY 4.0 / CC BY-NC 4.0]
-  License URL  : [授權條款網址]
-  Modifications: [是否有修改？例如 "Trimmed to 90s loop" 或 "No changes"]
-  ═══════════════════════════════════════════════════
-  如使用 CC BY 或 CC BY-NC，依授權要求須標示作者姓名。
-  如使用 CC0，無需標示，但建議保留此記錄供內部查核。
+  Track title  : Misty lake
+  Composer     : HarumachiMusic 
+  Source       : https://pixabay.com/users/harumachimusic-13470593
+  License      : CC0 
+  License URL  : https://pixabay.com/service/terms
+  Modifications: No changes
   ═══════════════════════════════════════════════════
 -->
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Serif+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap');
 
@@ -77,7 +75,7 @@
   --dove:        #e6e8ed;
 
   /* Warm accents (dry branches, bone) */
-  --gold-dry:    #b6a990;
+  --gold-dry:    #4c4506;
   --bone:        #c8b89a;
   --warm-grey:   #978471;
 
@@ -86,7 +84,7 @@
   --pink-pale:   #c4a8a8;
 
   /* Text — darkened 10% */
-  --ink:         #22201a;
+  --ink:         #63562e;
   --ink-mid:     #32302c;
   --ink-soft:    #4d4a44;
   --ink-ghost:   #75716b;
@@ -659,7 +657,7 @@ body::after {
   <div id="cover">
 
     <!-- Atmospheric SVG: fog shore, stone silhouette, white bird -->
-    <svg class="cover-art" viewBox="0 0 260 130" xmlns="http://www.w3.org/2000/svg">
+    <img class="cover-art" src="cover.jpg" alt="Sea of Mirrors cover">
       <defs>
         <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%"   stop-color="#d4d0c8"/>
@@ -721,8 +719,9 @@ body::after {
 
     <p class="cover-note">
       旅人配對測試 · 共 8 題<br>
-      測試結果將協助遊戲開發團隊了解玩家情感類型分佈，<br>
-      作為美術風格與遊戲體驗設計的參考依據。
+      測試結果將協助遊戲開發了解玩家情感類型分佈，<br>
+      作為美術風格與遊戲體驗設計的參考依據。<br>
+      Contact Info : siohuhu.studio@gmail.com
     </p>
 
     <button class="btn-start" onclick="startQuiz()"><span>踏入霧中 · 開始測試</span></button>
@@ -752,35 +751,16 @@ body::after {
       <p class="r-body" id="rbody"></p>
       <div class="mirror-box">
         <div class="mirror-text" id="rmirror"></div>
-        <div class="mirror-attr">— Sea of Mirrors · 鏡之海 · 電話亭留言</div>
+        <div class="mirror-attr">— Sea of Mirrors · 鏡之海 · 風之電話亭留言</div>
       </div>
       <div class="data-note">
         <b>📊 數據說明：</b>你的選擇已匿名記錄於本次會話。包含題目選擇、反應時間、旅人類型。
         不收集任何個人識別資料。點擊「查看數據」可下載完整 JSON。
       </div>
-      <!-- share card (hidden, captured by html2canvas) -->
-      <div id="shareCard" class="share-card-hidden">
-        <div class="sc-bar" id="scBar"></div>
-        <div class="sc-icon"  id="scIcon"></div>
-        <div class="sc-en"    id="scEn"></div>
-        <div class="sc-zh"    id="scZh"></div>
-        <div class="sc-tarot" id="scTarot"></div>
-        <div class="sc-rule"></div>
-        <div class="sc-mirror" id="scMirror"></div>
-        <div class="sc-watermark">Sea of Mirrors · 鏡之海</div>
-      </div>
-
       <div class="r-actions">
         <button class="btn" onclick="restartQuiz()">重新測試</button>
-        <button class="btn share" onclick="doShareImage()" id="shareBtn">
-          <span id="shareBtnTxt">↓ 下載分享圖</span>
-        </button>
-        <button class="btn fb" onclick="shareFacebook()">
-          <span>f  分享到 Facebook</span>
-        </button>
         <button class="btn dark" onclick="toggleData()">查看數據</button>
       </div>
-      <p class="share-hint">1080×1080 · 適合 IG / LINE / 小紅書<br>Facebook 分享需先上線至 GitHub Pages</p>
     </div>
   </div>
 
@@ -795,9 +775,10 @@ body::after {
   </div>
 
   <div class="pg-footer">
-    Sea of Mirrors · 鏡之海 &nbsp;·&nbsp; 遊戲概念測試 v0.1<br>
-    美術參考：或る旅人の日記 (Tortov Roddle) · 概念插圖：石獅與羽毛旅人<br>
-    音樂參考：紀念碑谷 · Journey · 手風琴
+    Sea of Mirrors · 鏡之海 &nbsp;·&nbsp; 遊戲概念測試 v0.42<br>
+    美術參考：Monument Valley<br>
+    概念插圖：黑獅子與白鴿和流浪旅人 by Zhen.(siohuhu)<br>
+    Music：misty lake by HarumachiMusic 
   </div>
 
 </div><!-- /page -->
@@ -836,12 +817,12 @@ var QS=[
     ]
   },
   {
-    q:'夜裡你聽見電話亭的鈴聲。你接起來，聽見——',
+    q:'夜裡你聽見電話的鈴聲。你接起來，聽見——',
     opts:[
       {t:'自己的聲音說：「我還在這裡。」',       e:'stone'},
       {t:'自己的聲音說：「你應該繼續走。」',     e:'bird'},
       {t:'一段你說過但想忘記的話',               e:'thorn'},
-      {t:'什麼都沒有，只有風的雜訊',             e:'fog'}
+      {t:'什麼都沒有，只有風的低語',             e:'fog'}
     ]
   },
   {
@@ -899,7 +880,7 @@ var AR={
     tarot:'🌙 月亮 · 節制 · 女教宗',
     bar:'linear-gradient(90deg,#8a9898,#aeb8c4)',
     body:'你是鏡之海裡最難被定義的旅人。你走在霧裡，不是因為迷路，而是因為霧給了你一種自由——不必被看見，也不必做任何決定。你的旅途是感受的旅途，而非目標的旅途。你知道有些事情不需要答案，它們只需要被待在一起。電話亭對你來說不是工具，是一個你有時走過、有時不進去的地方。',
-    mirror:'什麼都沒有，只有風的雜訊，\n和遠方隱約的波聲。\n\n但你繼續站著。\n那也是一種在。',
+    mirror:'什麼都沒有，只有風的低語，\n和遠方隱約的海浪聲。\n\n但你繼續站著。\n那也是一種存在。',
     icon:'fog'
   },
   stone:{
@@ -940,10 +921,10 @@ var dataVisible=false;
 
 /* ─────────── SVG ICONS ─────────── */
 var ICONS={
-  fog:'<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="28" stroke="#8a9898" stroke-width=".8" fill="rgba(138,152,152,.08)"/><ellipse cx="36" cy="38" rx="16" ry="6" fill="rgba(174,184,196,.22)"/><ellipse cx="36" cy="33" rx="11" ry="4" fill="rgba(174,184,196,.18)"/><ellipse cx="36" cy="28" rx="7" ry="2.5" fill="rgba(174,184,196,.14)"/><line x1="20" y1="46" x2="52" y2="46" stroke="#8a9898" stroke-width=".7" opacity=".35"/><line x1="24" y1="50" x2="48" y2="50" stroke="#8a9898" stroke-width=".7" opacity=".22"/></svg>',
-  stone:'<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="28" stroke="#7a7870" stroke-width=".8" fill="rgba(120,120,112,.07)"/><polygon points="36,19 50,46 22,46" fill="rgba(122,120,112,.18)" stroke="#7a7870" stroke-width=".8"/><line x1="29" y1="35" x2="43" y2="35" stroke="#a09888" stroke-width=".7" opacity=".45"/><line x1="31" y1="40" x2="41" y2="40" stroke="#a09888" stroke-width=".6" opacity=".3"/></svg>',
-  thorn:'<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="28" stroke="#907080" stroke-width=".8" fill="rgba(144,112,128,.07)"/><path d="M36 20 C36 20 41 27 41 34 C41 41 36 43 36 50 C36 43 31 41 31 34 C31 27 36 20 36 20Z" fill="rgba(144,112,128,.22)" stroke="#907080" stroke-width=".8"/><path d="M26 35 L32 33" stroke="#c0a0a0" stroke-width=".7" opacity=".45"/><path d="M46 35 L40 33" stroke="#c0a0a0" stroke-width=".7" opacity=".45"/><circle cx="36" cy="50" r="1.5" fill="#907080" opacity=".4"/></svg>',
-  bird:'<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="28" stroke="#8898a8" stroke-width=".8" fill="rgba(136,152,168,.07)"/><path d="M23 40 Q29.5 33 36 35 Q42.5 33 49 40" stroke="#8898a8" stroke-width="1" fill="none" opacity=".65"/><path d="M30 35 Q33 31 36 33" stroke="#b0c0c8" stroke-width=".8" fill="none" opacity=".55"/><path d="M42 35 Q39 31 36 33" stroke="#b0c0c8" stroke-width=".8" fill="none" opacity=".55"/><circle cx="36" cy="45" r="2.5" fill="rgba(136,152,168,.28)" stroke="#8898a8" stroke-width=".6"/></svg>'
+  fog:'<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="28" stroke="#8a9898" stroke-width="1.6" fill="rgba(138,152,152,.1)"/><ellipse cx="36" cy="38" rx="16" ry="6" fill="rgba(174,184,196,.22)"/><ellipse cx="36" cy="33" rx="11" ry="4" fill="rgba(174,184,196,.18)"/><ellipse cx="36" cy="28" rx="7" ry="2.5" fill="rgba(174,184,196,.14)"/><line x1="20" y1="46" x2="52" y2="46" stroke="#8a9898" stroke-width=".7" opacity=".65"/><line x1="24" y1="50" x2="48" y2="50" stroke="#8a9898" stroke-width="1.2" opacity=".6"/></svg>',
+  stone:'<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="28" stroke="#7a7870" stroke-width="1.6" fill="rgba(120,120,112,.1)"/><polygon points="36,19 50,46 22,46" fill="rgba(122,120,112,.18)" stroke="#7a7870" stroke-width="1.2"/><line x1="29" y1="35" x2="43" y2="35" stroke="#a09888" stroke-width="1.2" opacity=".75"/><line x1="31" y1="40" x2="41" y2="40" stroke="#a09888" stroke-width="1.2" opacity=".6"/></svg>',
+  thorn:'<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="28" stroke="#907080" stroke-width="1.6" fill="rgba(144,112,128,.1)"/><path d="M36 20 C36 20 41 27 41 34 C41 41 36 43 36 50 C36 43 31 41 31 34 C31 27 36 20 36 20Z" fill="rgba(144,112,128,.22)" stroke="#907080" stroke-width="1.2"/><path d="M26 35 L32 33" stroke="#c0a0a0" stroke-width="1.7" opacity=".75"/><path d="M46 35 L40 33" stroke="#c0a0a0" stroke-width="1.2" opacity=".7"/><circle cx="36" cy="50" r="1.5" fill="#907080" opacity=".7"/></svg>',
+  bird:'<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="28" stroke="#8898a8" stroke-width="1.6" fill="rgba(136,152,168,.1)"/><path d="M23 40 Q29.5 33 36 35 Q42.5 33 49 40" stroke="#8898a8" stroke-width="1.2" fill="none" opacity=".65"/><path d="M30 35 Q33 31 36 33" stroke="#b0c0c8" stroke-width="1.2" fill="none" opacity=".55"/><path d="M42 35 Q39 31 36 33" stroke="#b0c0c8" stroke-width="1.7" fill="none" opacity=".7"/><circle cx="36" cy="45" r="2.5" fill="rgba(136,152,168,.28)" stroke="#8898a8" stroke-width="1.2"/></svg>',
 };
 
 /* ─────────── START ─────────── */
@@ -1079,7 +1060,7 @@ var musicReady   = false;
 var hintTimer    = null;
 
 // ★ CHANGE THIS to your actual audio file path when deployed
-var AUDIO_SRC = 'music/ambient.mp3';
+var AUDIO_SRC = 'music/misty-lake.mp3';
 
 function initAudio() {
   var audio = document.getElementById('bgAudio');
@@ -1178,12 +1159,11 @@ function _populateShareCard(top, r) {
 
   /* mirror — keep newlines as line breaks */
   var mirrorEl = document.getElementById('scMirror');
-  mirrorEl.innerHTML = r.mirror.replace(/
-/g,'<br>');
+  mirrorEl.innerHTML = r.mirror.replace(/\n/g, '<br>');
 
   /* share card background: subtle radial fog */
   var card = document.getElementById('shareCard');
-  card.style.background =
+card.style.background =
     'radial-gradient(ellipse 70% 50% at 30% 20%, rgba(196,199,212,.2) 0%, transparent 60%),' +
     'radial-gradient(ellipse 50% 40% at 70% 80%, rgba(180,184,196,.15) 0%, transparent 55%),' +
     'var(--fog-white)';
@@ -1222,54 +1202,36 @@ function _captureCard(btn, btxt) {
   _populateShareCard(top, r);
 
   var card = document.getElementById('shareCard');
-
-  /* Temporarily move card to body for html2canvas to render fonts */
   card.style.left   = '-9999px';
   card.style.top    = '-9999px';
-  card.style.position = 'absolute';
-  document.body.appendChild(card);
+  card.style.display = 'flex'; // 確保它是可見狀態供截圖
 
-  setTimeout(function() {
-    html2canvas(card, {
-      width:       1080,
-      height:      1080,
-      scale:       1,
-      useCORS:     true,
-      allowTaint:  false,
-      backgroundColor: null,
-      logging:     false,
-      onclone: function(doc) {
-        /* ensure fonts are applied in cloned doc */
-        var el = doc.getElementById('shareCard');
-        if (el) { el.style.left='0'; el.style.top='0'; }
-      }
-    }).then(function(canvas) {
-      /* restore card position */
-      card.style.left = '-9999px';
-
-      try {
-        var link = document.createElement('a');
-        link.download = 'sea-of-mirrors-' + top + '.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-        btxt.textContent = '✓ 已下載';
+  // 等待字體載入後再截圖
+  document.fonts.ready.then(function() {
+    setTimeout(function() {
+      html2canvas(card, {
+        width: 1080,
+        height: 1080,
+        scale: 1,
+        useCORS: true,
+        backgroundColor: '#f0ede7'
+      }).then(function(canvas) {
+        try {
+          var link = document.createElement('a');
+          link.download = 'sea-of-mirrors-' + top + '.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          btxt.textContent = '✓ 已下載';
+        } catch(e) {
+          window.open(canvas.toDataURL('image/png'), '_blank');
+        }
         setTimeout(function() {
           btxt.textContent = '↓ 下載分享圖';
           btn.disabled = false;
         }, 2200);
-      } catch(e) {
-        /* iOS fallback — open in new tab for long-press save */
-        window.open(canvas.toDataURL('image/png'), '_blank');
-        btxt.textContent = '↓ 下載分享圖';
-        btn.disabled = false;
-      }
-    }).catch(function(err) {
-      console.warn('html2canvas error:', err);
-      btxt.textContent = '↓ 下載分享圖';
-      btn.disabled = false;
-      alert('截圖失敗，請稍後再試。');
-    });
-  }, 120);
+      });
+    }, 200);
+  });
 }
 
 /* Facebook share */
@@ -1280,8 +1242,6 @@ function shareFacebook() {
   var shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
   window.open(shareUrl, '_blank', 'width=600,height=480,noopener,noreferrer');
 }
-
-
 </script>
 </body>
 </html>
