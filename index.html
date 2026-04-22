@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sea of Mirrors · 鏡之海 — 你是哪一種旅人？</title>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<meta name="description" content="...">
+  ...
+</head>
 <!-- ═══ SEO ═══ -->
 <meta name="description" content="它不是「我們的海」，而是「鏡之海」。你在大霧中沿著海岸探索，然而除了恐懼未知外，別無他物。8 題旅人配對測試，找到你在鏡之海的位置。">
 <meta name="keywords" content="Sea of Mirrors, 鏡之海, 遊戲, 配對測試, 旅人, 塔羅, 互動">
@@ -663,7 +666,7 @@ body::after {
         <button class="btn share" id="shareBtn" onclick="downloadShareImage()">
           <span id="shareBtnTxt">↓ 下載分享圖</span>
         </button>
-        <button class="btn fb" onclick="shareFacebook()">f &nbsp;分享到 Facebook</button>
+        <button class="btn fb" onclick="nativeShare()">⚡ 分享測試結果</button>
         <button class="btn" onclick="restartQuiz()">重新測試</button>
         <button class="btn dark" onclick="toggleData()">查看數據</button>
       </div>
@@ -685,7 +688,7 @@ body::after {
   </div>
 
   <div class="pg-footer">
-    Sea of Mirrors · 鏡之海 &nbsp;·&nbsp; 遊戲概念測試 v0.5<br>
+    Sea of Mirrors · 鏡之海 &nbsp;·&nbsp; 遊戲概念測試 v0.6<br>
     美術參考：Monument Valley<br>
     概念插圖：黑獅子與白鴿和流浪旅人 by Zhen.(siohuhu)<br>
     Music：Misty lake by HarumachiMusic 
@@ -1051,62 +1054,63 @@ var SHARE_IMAGES = {
 };
 
 /* Base URL — served from same directory as index.html on GitHub Pages */
-var BASE_URL = (function(){
-  var loc = window.location.href;
-  return loc.substring(0, loc.lastIndexOf('/') + 1);
-})();
-
 function downloadShareImage() {
   var btn  = document.getElementById('shareBtn');
   var btxt = document.getElementById('shareBtnTxt');
-  var top  = session.result ? session.result.key : 'fog';
-  var filename = SHARE_IMAGES[top];
-
+  
+  // 1. 防止重複點擊
   btn.disabled = true;
-  btxt.textContent = '下載中…';
+  btxt.textContent = '圖片生成中...';
 
-  var imgUrl = BASE_URL + filename;
+  // 2. 指定要截圖的範圍：結果卡片 (.result-card)
+  var element = document.querySelector("#result .result-card");
 
-  /* Fetch as blob so we can trigger a real download (works on desktop browsers) */
-  fetch(imgUrl)
-    .then(function(res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res.blob();
-    })
-    .then(function(blob) {
-      var url  = URL.createObjectURL(blob);
-      var link = document.createElement('a');
-      link.href     = url;
-      link.download = 'sea-of-mirrors-' + top + '.png';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-      btxt.textContent = '✓ 已下載';
-      setTimeout(function() {
-        btxt.textContent = '↓ 下載分享圖';
-        btn.disabled = false;
-      }, 2200);
-    })
-    .catch(function(err) {
-      /* Fallback: open in new tab — user can long-press save on mobile */
-      console.warn('fetch failed, opening tab:', err);
-      window.open(imgUrl, '_blank');
+  // 3. 呼叫 html2canvas
+  html2canvas(element, {
+    scale: 2,               // 提高清晰度
+    useCORS: true,          // 支援跨域圖片載入
+    backgroundColor: "#f0ede7", // 使用專案定義的 --fog-white 底色
+    logging: false
+  }).then(function(canvas) {
+    // 4. 將 canvas 轉換為圖片連結並下載
+    var link = document.createElement('a');
+    var topType = session.result ? session.result.key : 'traveler';
+    link.download = 'SeaOfMirrors-' + topType + '.png';
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+
+    // 5. 恢復按鈕狀態
+    btxt.textContent = '✓ 已下載';
+    setTimeout(function() {
       btxt.textContent = '↓ 下載分享圖';
       btn.disabled = false;
-    });
+    }, 2000);
+  }).catch(function(err) {
+    console.error('截圖失敗:', err);
+    btxt.textContent = '⚠ 下載失敗';
+    btn.disabled = false;
+  });
 }
 
 /* Facebook share — sends the canonical page URL */
-function shareFacebook() {
-  var pageUrl = encodeURIComponent(
-    'https://siohuhu.github.io/sea-of-mirrors/'
-  );
-  window.open(
-    'https://www.facebook.com/sharer/sharer.php?u=' + pageUrl,
-    '_blank',
-    'width=620,height=480,noopener,noreferrer'
-  );
+async function nativeShare() {
+  if (!session.result) return;
+
+  const shareData = {
+    title: 'Sea of Mirrors · 鏡之海',
+    text: `【鏡之海旅人測試】\n我的類型是：${AR[session.result.key].zh}\n「${AR[session.result.key].tarot}」\n\n快來尋找你在大霧海岸的位置：`,
+    url: 'https://siohuhu.github.io/sea-of-mirrors/' 
+  };
+
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+    } catch (err) {
+      console.log('使用者取消分享');
+    }
+  } else {
+    shareFacebook();
+  }
 }
 
 </script>
