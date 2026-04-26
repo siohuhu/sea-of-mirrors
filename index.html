@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="image/cover.png" type="image/png">
+<link rel="apple-touch-icon" href="image/cover.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sea of Mirrors · 鏡之海 — 旅人測驗</title>
+
+<!-- ═══ SEO ═══ -->
+<meta name="description" content="一場以迷霧海岸、白鳥與失物為序幕的 8 題旅人測驗。完成後，找到你在《鏡之海》裡所對應的旅人原型，保存並分享屬於你的結果卡片。">
+<meta name="keywords" content="Sea of Mirrors, 鏡之海, 旅人測驗, 互動測驗, 旅人原型, 塔羅意象, 遊戲">
+<meta name="author" content="Sea of Mirrors">
+<link rel="canonical" href="https://siohuhu.github.io/sea-of-mirrors/">
+
+<!-- ═══ OPEN GRAPH — Facebook, LINE, Instagram, Discord ═══ -->
+<meta property="og:type"        content="website">
+<meta property="og:site_name"   content="Sea of Mirrors · 鏡之海">
+<meta property="og:title"       content="Sea of Mirrors · 鏡之海 — 旅人測驗">
+<meta property="og:description" content="走入迷霧海岸，完成 8 題旅人測驗，找到你在《鏡之海》裡所對應的旅人原型與結果卡片。">
+<meta property="og:url"         content="https://siohuhu.github.io/sea-of-mirrors/">
+<meta property="og:image"       content="https://siohuhu.github.io/sea-of-mirrors/image/og-image.png">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt"    content="Sea of Mirrors — 霧岸場景與旅人測驗結果卡片">
+<meta property="og:locale"       content="zh_TW">
+
+<!-- ═══ TWITTER / X CARD ═══ -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="Sea of Mirrors · 鏡之海 — 旅人測驗">
+<meta name="twitter:description" content="完成 8 題旅人測驗，找到你在《鏡之海》裡的旅人原型，保存並分享你的結果卡片。">
+<meta name="twitter:image"       content="https://siohuhu.github.io/sea-of-mirrors/image/og-image.png">
+<meta name="twitter:image:alt"   content="Sea of Mirrors 旅人測驗結果卡片">
+
+<!-- ═══ LINE / iOS / Android ═══ -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Sea of Mirrors">
+<meta name="theme-color" content="#f0ede7">
+
+<!--
+  ═══════════════════════════════════════════════════
+  MUSIC COPYRIGHT
+  ═══════════════════════════════════════════════════
+  Track title  : Misty lake
+  Composer     : HarumachiMusic 
+  Source       : https://pixabay.com/users/harumachimusic-13470593
+  License      : CC0 
+  License URL  : https://pixabay.com/service/terms
+  Modifications: No changes
+  ═══════════════════════════════════════════════════
+-->
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Serif+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap');
+
+/* ═══════════════════════════════════════
+   PALETTE — extracted from concept art
+   Feather Figure: fog-white, cool blue-grey, warm bone
+   Stone Lion: dark charcoal, stone-green-grey, dry gold, rose-pink
+═══════════════════════════════════════ */
+:root {
+  /* Backgrounds — lightened 20% */
+  --fog-white:   #f0ede7;
+  --mist:        #e9e6e0;
+  --parchment:   #e3e0da;
+  --veil:        #dbd9d3;
+
+  /* Stones & Darks (from stone lion) */
+  --stone-dark:  #3b3d3b;
+  --stone-mid:   #5a5c58;
+  --stone-light: #8a8c88;
+
+  /* Cool greys — lightened 20% */
+  --fog-cool:    #d9dbe3;
+  --fog-blue:    #cbd1d9;
+  --dove:        #e6e8ed;
+
+  /* Warm accents (dry branches, bone) */
+  --gold-dry:    #7a6f10;
+  --bone:        #c8b89a;
+  --warm-grey:   #978471;
+
+  /* Rare accents */
+  --rose-dry:    #b09090;
+  --pink-pale:   #c4a8a8;
+
+  /* Text — darkened 10% */
+  --ink:         #63562e;
+  --ink-mid:     #32302c;
+  --ink-soft:    #4d4a44;
+  --ink-ghost:   #75716b;
+
+  /* Borders */
+  --line:        rgba(58,56,50,.15);
+  --line-soft:   rgba(58,56,50,.08);
+  --sh:          rgba(42,40,32,.1);
+}
+
+/* ═══════════════ RESET ═══════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { font-size:15px; scroll-behavior:smooth; }
+
+/* ═══════════════ BASE ═══════════════ */
+body {
+  background: var(--fog-white);
+  color: var(--ink);
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 300;
+  line-height: 1.8;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ─── GRAIN TEXTURE ─── */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 999;
+  pointer-events: none;
+  opacity: .032;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain)'/%3E%3C/svg%3E");
+}
+
+/* ─── MIST LAYERS ─── */
+.mist-layer {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 100% 50% at 15% 5%,  rgba(214,217,228,.28) 0%, transparent 55%),
+    radial-gradient(ellipse 70%  60% at 85% 95%, rgba(200,203,214,.22) 0%, transparent 50%),
+    radial-gradient(ellipse 50%  30% at 50% 45%, rgba(231,234,240,.14) 0%, transparent 45%);
+}
+
+/* ─── FLOATING PARTICLES ─── */
+#ptcl { position:fixed; inset:0; z-index:0; pointer-events:none; }
+.pt {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(214,217,228,.5);
+  animation: float linear infinite;
+}
+@keyframes float {
+  0%   { transform: translateY(105vh) translateX(0)     scale(.4); opacity:0; }
+  8%   { opacity:1; }
+  90%  { opacity:.5; }
+  100% { transform: translateY(-15vh) translateX(30px)  scale(1.1); opacity:0; }
+}
+
+/* ═══════════════ LAYOUT ═══════════════ */
+.page { position:relative; z-index:1; max-width:680px; margin:0 auto; padding:0 22px 90px; }
+
+/* ═══════════════ COVER PAGE ═══════════════ */
+#cover { text-align:center; padding:72px 0 60px; }
+
+/* Atmospheric SVG illustration */
+.cover-art {
+  width: min(100%, 460px);
+  height: auto;
+  display: block;
+  margin: 0 auto 18px;
+  filter: brightness(1.05) contrast(0.9) saturate(0.8);
+}
+
+.eyebrow {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: .72rem;
+  letter-spacing: .4em;
+  color: var(--ink-ghost);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 18px;
+}
+
+.title-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2.6rem, 9vw, 4.2rem);
+  letter-spacing: .14em;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.title-zh {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 300;
+  font-size: clamp(.9rem, 2.8vw, 1.15rem);
+  letter-spacing: .38em;
+  color: var(--ink-soft);
+  display: block;
+  margin-bottom: 40px;
+}
+
+.motto {
+  max-width: 400px;
+  margin: 0 auto 46px;
+  padding: 18px 22px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.04rem;
+  color: var(--ink-mid);
+  line-height: 1.9;
+  position: relative;
+}
+.motto em { font-style: normal; font-size: .82rem; color: var(--ink-ghost); display:block; margin-top:6px; }
+
+.cover-note {
+  font-size: .76rem;
+  color: var(--ink-ghost);
+  font-style: italic;
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+
+/* START BUTTON */
+.btn-start {
+  display: inline-block;
+  position: relative;
+  padding: 13px 42px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .98rem;
+  letter-spacing: .18em;
+  color: var(--ink);
+  background: transparent;
+  border: 1.5px solid var(--ink-mid);
+  cursor: pointer;
+  overflow: hidden;
+  transition: color .4s;
+}
+.btn-start::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--stone-dark);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s cubic-bezier(.65,0,.35,1);
+  z-index: 0;
+}
+.btn-start:hover::before { transform: scaleX(1); }
+.btn-start:hover { color: var(--fog-white); border-color: var(--stone-dark); }
+.btn-start span { position:relative; z-index:1; }
+
+/* ═══════════════ PROGRESS ═══════════════ */
+#prog { padding: 34px 0 22px; display:none; }
+.prog-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 8px;
+}
+.prog-lbl {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: .72rem; color: var(--ink-ghost);
+  letter-spacing: .1em;
+}
+.prog-n { font-size: .68rem; color: var(--bone); }
+.prog-track {
+  height: 1px;
+  background: var(--veil);
+  position: relative;
+}
+.prog-fill {
+  position: absolute; top: 0; left: 0; height: 100%;
+  background: linear-gradient(90deg, var(--warm-grey), var(--gold-dry));
+  transition: width .6s cubic-bezier(.65,0,.35,1);
+}
+
+/* ═══════════════ QUESTION CARD ═══════════════ */
+.q-card {
+  background: rgba(232,229,224,.72);
+  border: 1px solid var(--line);
+  padding: 30px 30px 26px;
+  box-shadow: 0 3px 20px var(--sh), inset 0 1px 0 rgba(255,255,255,.4);
+  animation: cardSlide .44s cubic-bezier(.22,1,.36,1) both;
+  position: relative;
+}
+@keyframes cardSlide {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+/* tiny corner ornament */
+.q-card::before {
+  content: '·';
+  position: absolute; top: 10px; right: 14px;
+  color: var(--bone); font-size: 1.4rem; line-height:1;
+}
+
+.q-eyebrow {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: .68rem; letter-spacing: .16em;
+  color: var(--ink-ghost); text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.q-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 1.18rem;
+  color: var(--ink); line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.q-opts { display:flex; flex-direction:column; gap:9px; }
+
+.q-opt {
+  position: relative;
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px 12px 32px;
+  border: 1px solid var(--line);
+  background: rgba(242,240,234,.62);
+  cursor: pointer;
+  font-size: .85rem;
+  color: var(--ink-mid);
+  line-height: 1.55;
+  text-align: left;
+  transition: background .22s, border-color .22s, color .22s, opacity .22s, transform .18s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.q-opt::before {
+  content: '';
+  position: absolute; left: 12px; top: 50%;
+  width: 6px; height: 6px;
+  border: 1px solid var(--bone);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: background .22s, border-color .22s;
+}
+.q-opt:hover {
+  background: rgba(230,228,222,.85);
+  border-color: var(--warm-grey);
+}
+.q-opt:hover::before { border-color: var(--warm-grey); }
+.q-opt:focus-visible {
+  outline: 2px solid var(--warm-grey);
+  outline-offset: 2px;
+}
+.q-opt[disabled] {
+  cursor: default;
+  opacity: .72;
+}
+.q-opt.chosen {
+  background: rgba(59,61,59,.05);
+  border-color: var(--stone-mid);
+  color: var(--ink);
+}
+.q-opt.chosen::before {
+  background: var(--stone-mid);
+  border-color: var(--stone-mid);
+}
+.q-opt:active { transform: scale(.992); }
+
+/* ═══════════════ RESULT ═══════════════ */
+#result { display:none; animation: cardSlide .5s cubic-bezier(.22,1,.36,1) both; }
+
+.result-card {
+  /* 底色：羊皮紙霧感，帶淡藍冷灰暈 */
+  background:
+    radial-gradient(ellipse 110% 60% at 18% 12%,  rgba(210,215,228,.38) 0%, transparent 52%),
+    radial-gradient(ellipse 80%  50% at 88% 90%,  rgba(200,208,220,.28) 0%, transparent 48%),
+    radial-gradient(ellipse 60%  40% at 52% 48%,  rgba(235,232,226,.22) 0%, transparent 44%),
+    linear-gradient(158deg, rgba(232,229,222,.96) 0%, rgba(224,220,212,.98) 55%, rgba(218,215,208,1) 100%);
+
+  border: 1px solid rgba(180,175,165,.55);
+  border-top: 1px solid rgba(255,255,255,.72);
+  border-left: 1px solid rgba(255,255,255,.52);
+
+  padding: 36px 32px;
+
+  /* 三層陰影：外擴柔霧 + 中距暈 + 內光邊 */
+  box-shadow:
+    0 2px  8px  rgba(180,178,172,.12),
+    0 8px  28px rgba(100, 98, 90,.10),
+    0 22px 52px rgba( 60, 58, 52,.09),
+    inset 0 1px 0  rgba(255,255,255,.70),
+    inset 0 0  28px rgba(220,218,212,.18);
+
+  position: relative;
+  border-radius: 10px;
+  overflow: clip;
+  isolation: isolate;
+}
+
+/* ── 霧層 1：頂部冷光掃過，像窗邊折射的晨霧 ── */
+.result-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse 140% 55% at 50% -10%,  rgba(225,228,238,.52) 0%, transparent 58%),
+    radial-gradient(ellipse  70% 35% at  8% 30%,   rgba(215,220,232,.32) 0%, transparent 50%),
+    radial-gradient(ellipse  55% 28% at 92% 68%,   rgba(205,212,225,.24) 0%, transparent 46%);
+}
+
+/* ── 霧層 2：細緻 noise 紋理，增加紙感 ── */
+.result-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: .045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── 所有子內容浮在霧層之上 ── */
+.result-card > * { position: relative; z-index: 2; }
+
+/* ── 頂部光暈橫條，像晨光從霧中透出 ── */
+@keyframes mistShimmer {
+  0%   { opacity: .18; transform: translateX(-12%) skewX(-8deg); }
+  50%  { opacity: .28; transform: translateX( 12%) skewX( 8deg); }
+  100% { opacity: .18; transform: translateX(-12%) skewX(-8deg); }
+}
+.result-card .r-shimmer {
+  position: absolute;
+  top: 0; left: -20%; right: -20%; height: 48%;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    175deg,
+    rgba(238,236,232,.0)  0%,
+    rgba(238,236,232,.22) 38%,
+    rgba(245,243,239,.32) 50%,
+    rgba(238,236,232,.18) 62%,
+    rgba(238,236,232,.0) 100%
+  );
+  border-radius: 0 0 60% 60% / 0 0 30% 30%;
+  animation: mistShimmer 9s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+/* top accent bar */
+.r-bar { height: 3px; margin-bottom: 28px; }
+
+/* archetype icon area */
+.r-icon { text-align:center; margin-bottom: 20px; }
+.r-icon svg { width:72px; height:72px; }
+
+.r-type-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 1.55rem;
+  letter-spacing: .1em; color: var(--ink);
+  text-align: center; margin-bottom: 4px;
+}
+.r-type-zh {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 300; font-size: .82rem;
+  letter-spacing: .26em; color: var(--ink-soft);
+  text-align: center; display: block;
+  margin-bottom: 14px;
+}
+.r-tarot-line {
+  text-align: center;
+  font-family: 'IM Fell English', serif;
+  font-style: italic; font-size: .8rem;
+  color: var(--gold-dry); letter-spacing: .06em;
+  margin-bottom: 22px;
+}
+.r-rule {
+  border: none; border-top: 1px solid var(--line);
+  margin: 18px 0;
+}
+.r-body {
+  font-size: .87rem; color: var(--ink-mid);
+  line-height: 1.9; margin-bottom: 20px;
+  text-align: justify;
+}
+
+/* mirror box */
+.mirror-box {
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 0%, rgba(215,220,232,.22) 0%, transparent 60%),
+    rgba(42,40,32,.045);
+  border: 1px solid rgba(42,40,32,.16);
+  border-top: 1px solid rgba(255,255,255,.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.38),
+    0 2px 10px rgba(42,40,32,.06);
+  padding: 16px 18px;
+  margin: 20px 0 18px;
+  position: relative;
+}
+.mirror-box::before {
+  position: absolute; top: -9px; left: 14px;
+  background: var(--parchment);
+  font-family: 'Noto Serif TC', serif;
+  font-size: .58rem; letter-spacing: .12em;
+  color: var(--ink-ghost); padding: 0 6px;
+}
+.mirror-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: .92rem;
+  color: var(--ink-mid); line-height: 1.86;
+}
+.mirror-attr {
+  margin-top: 8px;
+  font-size: .68rem; color: var(--ink-ghost);
+  font-style: italic;
+}
+
+/* data note */
+.data-note {
+  background: rgba(182,169,144,.1);
+  border: 1px dashed rgba(182,169,144,.4);
+  padding: 11px 14px;
+  font-size: .72rem; color: var(--ink-soft);
+  line-height: 1.65; margin-bottom: 20px;
+}
+.data-note b { color: var(--gold-dry); }
+
+/* action buttons */
+.r-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 40px;
+  width: 100%;
+}
+
+/* ═══════════════ BUTTONS ═══════════════ */
+.btn {
+  padding: 9px 24px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .9rem; letter-spacing: .1em;
+  cursor: pointer; transition: all .25s;
+  border: 1.5px solid var(--ink-mid);
+  background: transparent; color: var(--ink);
+}
+.btn:hover { background: var(--ink); color: var(--fog-white); }
+.btn.dark { background: var(--stone-dark); color: var(--fog-white); border-color: var(--stone-dark); }
+.btn.dark:hover { background: var(--stone-mid); }
+
+.r-actions .btn {
+  width: 100%;
+  max-width: 280px;
+  min-height: 50px;
+  margin: 0;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  touch-action: manipulation;
+}
+
+/* ═══════════════ IMAGE PREVIEW OVERLAY ═══════════════ */
+.preview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 40%, rgba(240,237,231,.18) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(200,205,215,.12) 0%, transparent 55%),
+    rgba(10,10,10,0.78);
+  backdrop-filter: blur(12px) saturate(0.9);
+  -webkit-backdrop-filter: blur(12px) saturate(0.9);
+  animation: fogFadeIn .6s ease;
+}
+.preview-overlay[hidden] { display: none !important; }
+body.preview-open, html.preview-open {
+  overflow: hidden;
+}
+.preview-content {
+  width: 90%; max-width: 500px; text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.preview-content img {
+  width: 100%; border-radius: 12px; box-shadow: 0 10px 28px rgba(0,0,0,0.42);
+}
+.preview-hint {
+  color: #f0ede7; font-size: 0.9rem; letter-spacing: .04em; line-height: 1.7;
+}
+.close-btn {
+  margin-top: 0; background: rgba(255,255,255,0.2); border: 1px solid #fff; color: #fff;
+}
+
+/* ═══════════════ DATA PANEL ═══════════════ */
+#data-panel { display:none; margin-top:36px; }
+.dp-wrap {
+  background: rgba(218,215,209,.5);
+  border: 1px solid var(--line);
+  padding: 20px 22px;
+}
+.dp-title {
+  font-family: 'IM Fell English', serif;
+  font-style: italic; font-size: .76rem;
+  letter-spacing: .14em; color: var(--ink-soft);
+  text-transform: uppercase; margin-bottom: 14px;
+}
+.dp-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+@media(max-width:480px){ .dp-grid{ grid-template-columns:1fr; } }
+.dp-cell {
+  background: rgba(232,228,218,.7);
+  border: 1px solid var(--line-soft);
+  padding: 10px 12px;
+}
+.dp-lbl { font-size:.62rem; color:var(--ink-ghost); letter-spacing:.1em; text-transform:uppercase; margin-bottom:4px; }
+.dp-val { font-size:.82rem; color:var(--ink-mid); }
+.dp-bar { height:2px; background:var(--veil); margin-top:5px; }
+.dp-bfill { height:100%; background:linear-gradient(90deg,var(--stone-mid),var(--gold-dry)); transition:width .8s ease; }
+.dp-meta {
+  margin-top:12px; padding-top:10px;
+  border-top:1px solid var(--line-soft);
+  font-size:.7rem; color:var(--ink-ghost);
+  font-style:italic; line-height:1.65;
+}
+.btn-export {
+  margin-top:12px;
+  padding:7px 18px;
+  font-size:.73rem;
+  cursor:pointer;
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--ink-soft);
+  font-family:'Noto Serif TC',serif;
+  transition:all .2s;
+}
+.btn-export:hover { background:var(--stone-mid); color:var(--fog-white); border-color:var(--stone-mid); }
+
+/* ═══════════════ FOOTER ═══════════════ */
+.pg-footer {
+  text-align:center;
+  padding:28px 0;
+  border-top:1px solid var(--line-soft);
+  margin-top:48px;
+  font-size:.67rem;
+  color:var(--ink-ghost);
+  font-style:italic;
+  letter-spacing:.06em;
+  line-height:1.8;
+}
+
+/* ═══════════════ SHARE BUTTONS ═══════════════ */
+.btn.share {
+  background: var(--warm-grey);
+  color: var(--fog-white);
+  border-color: var(--warm-grey);
+  letter-spacing: .08em;
+}
+.btn.share:hover { background: var(--stone-mid); border-color: var(--stone-mid); }
+.btn.share:disabled { opacity: .5; cursor: default; }
+
+.share-hint {
+
+  text-align: center;
+  font-size: .68rem;
+  color: var(--ink-ghost);
+  font-style: italic;
+  margin-top: 10px;
+  line-height: 1.7;
+  letter-spacing: .03em;
+}
+
+.music-nudge {
+  margin-top: 16px;
+  font-size: .68rem;
+  color: var(--ink-ghost);
+  font-style: italic;
+  letter-spacing: .06em;
+  opacity: .75;
+  animation: nudgeFade 3.5s ease 1.8s both;
+}
+@keyframes nudgeFade {
+  0%   { opacity: 0; transform: translateY(4px); }
+  20%  { opacity: .75; transform: translateY(0); }
+  80%  { opacity: .75; }
+  100% { opacity: .75; }
+}
+
+/* ═══════════════ HIDDEN ═══════════════ */
+.gone { display:none !important; }
+
+/* ─── COVER FADE-OUT ─── */
+#cover.fading-out {
+  animation: coverFade 1.3s cubic-bezier(.4,0,.6,1) forwards;
+}
+@keyframes coverFade {
+  0%   { opacity:1; transform:translateY(0); }
+  100% { opacity:0; transform:translateY(-10px); }
+}
+
+/* ═══════════════ MUSIC PLAYER ═══════════════ */
+.music-btn {
+  position: fixed;
+  top: 16px; right: 16px;
+  z-index: 500;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(220,216,208,.88);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 12px var(--sh);
+  transition: background .25s, transform .2s;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.music-btn:hover { background: rgba(200,196,188,.98); transform: scale(1.08); }
+.music-btn svg { width: 18px; height: 18px; }
+.music-btn .icon-play  { display: block; }
+.music-btn .icon-pause { display: none; }
+.music-btn.playing .icon-play  { display: none; }
+.music-btn.playing .icon-pause { display: block; }
+
+/* ripple when playing */
+.music-btn.playing::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(182,169,144,.45);
+  animation: ripple 2s ease-out infinite;
+}
+@keyframes ripple {
+  0%   { transform: scale(.9); opacity:.8; }
+  100% { transform: scale(1.4); opacity:0; }
+}
+
+/* volume fade-in banner */
+.music-hint {
+  position: fixed;
+  top: 66px; right: 12px;
+  z-index: 500;
+  background: rgba(220,216,208,.92);
+  border: 1px solid var(--line);
+  padding: 7px 12px;
+  font-family: 'Noto Serif TC', serif;
+  font-size: .68rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity .35s, transform .35s;
+  box-shadow: 0 2px 8px var(--sh);
+}
+.music-hint.show { opacity:1; transform:translateY(0); }
+
+@media (max-width: 860px) {
+  .page { padding: 0 18px 72px; }
+  #cover { padding: 56px 0 42px; }
+  .cover-art { width: min(100%, 420px); }
+  .result-card { padding: 30px 24px; }
+  .r-actions { margin-top: 30px; gap: 12px; }
+}
+
+@media (max-width: 640px) {
+  html { font-size: 14px; }
+  body { padding-top: env(safe-area-inset-top); }
+  .page { padding: 0 14px calc(56px + env(safe-area-inset-bottom)); }
+  #cover { padding: 42px 0 32px; }
+  .eyebrow { margin-bottom: 14px; letter-spacing: .28em; }
+  .title-en { font-size: clamp(2.3rem, 13vw, 3.3rem); letter-spacing: .09em; }
+  .title-zh { letter-spacing: .24em; margin-bottom: 28px; }
+  .motto { margin-bottom: 30px; padding: 15px 16px; font-size: .98rem; }
+  .cover-note { font-size: .74rem; margin-bottom: 24px; }
+  .btn-start { width: 100%; max-width: 320px; min-height: 52px; padding: 14px 20px; letter-spacing: .12em; }
+  #prog { padding: 22px 0 18px; }
+  .q-card { padding: 22px 16px 18px; border-radius: 10px; }
+  .q-text { font-size: 1.08rem; }
+  .q-opts { gap: 10px; }
+  .q-opt { padding: 13px 14px 13px 34px; font-size: .88rem; }
+  .result-card { padding: 24px 18px; }
+  .r-bar { margin-bottom: 22px; }
+  .r-icon { margin-bottom: 16px; }
+  .r-type-en { font-size: 1.35rem; }
+  .r-type-zh { letter-spacing: .18em; }
+  .r-body { font-size: .9rem; line-height: 1.82; text-align: left; }
+  .mirror-box { padding: 14px 14px 12px; }
+  .data-note { padding: 12px 13px; }
+  .r-actions { gap: 10px; }
+  .preview-overlay { padding: 18px 12px; align-items: center; justify-content: center; }
+  .preview-content {
+    width: 100%;
+    max-width: 420px;
+    padding: 16px 16px calc(18px + env(safe-area-inset-bottom));
+    background: rgba(20,20,18,.72);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 22px;
+    box-shadow: 0 16px 42px rgba(0,0,0,.28);
+  }
+  .preview-content img {
+    max-height: 68vh;
+    object-fit: contain;
+    box-shadow:
+      0 6px 18px rgba(0,0,0,.14),
+      0 14px 32px rgba(12,12,10,.16);
+  }
+  .preview-hint { font-size: .82rem; line-height: 1.7; }
+  .close-btn { width: 100%; margin-top: 2px; }
+  .music-btn { top: 12px; right: 12px; width: 42px; height: 42px; }
+  .music-hint { top: 60px; right: 10px; max-width: calc(100vw - 24px); white-space: normal; }
+  .pg-footer { margin-top: 36px; line-height: 1.7; }
+}
+
+@media (hover: none) {
+  .btn:hover, .btn.share:hover, .q-opt:hover, .music-btn:hover, .btn-start:hover {
+    transform: none;
+  }
+  .music-btn:hover { background: rgba(220,216,208,.88); }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ═══════ MUSIC PLAYER ═══════ -->
+<button type="button" class="music-btn" id="musicBtn" title="背景音樂開關" aria-label="背景音樂開關" aria-pressed="false">
+  <!-- play icon -->
+  <svg class="icon-play" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 3.5L14.5 9 5 14.5V3.5Z" fill="#5a5c58" stroke="#5a5c58" stroke-width=".5" stroke-linejoin="round"/>
+  </svg>
+  <!-- pause icon (two bars) -->
+  <svg class="icon-pause" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="4" y="3.5" width="3.5" height="11" rx=".8" fill="#5a5c58"/>
+    <rect x="10.5" y="3.5" width="3.5" height="11" rx=".8" fill="#5a5c58"/>
+  </svg>
+</button>
+<div class="music-hint" id="musicHint">♩ 背景音樂</div>
+
+<!-- audio element — src will be set by JS -->
+<audio id="bgAudio" loop preload="none"></audio>
+
+
+
+<div class="mist-layer"></div>
+<div id="ptcl"></div>
+
+<div class="page">
+
+  <!-- ═══════ COVER ═══════ -->
+  <div id="cover">
+
+    <!-- Atmospheric SVG: fog shore, stone silhouette, white bird -->
+    <img class="cover-art" src="cover.jpg" alt="Sea of Mirrors cover">
+    <span class="eyebrow">A Journey into Reflection</span>
+    <h1 class="title-en">Sea of Mirrors</h1>
+    <span class="title-zh">鏡 之 海</span>
+
+    <blockquote class="motto">
+      它不是「我們的海」，<br>而是「鏡之海」。
+      <em>你在大霧中沿著海岸探索，然而除了恐懼未知外，別無他物。</em>
+    </blockquote>
+
+    <p class="cover-note">
+      一場以迷霧海岸、白鳥與失物為序幕的旅人測驗 · 共 8 題<br>
+      完成後，你將看見自己在《鏡之海》裡所對應的旅人原型，<br>
+      並可保存結果卡片，分享屬於你的霧中位置。<br>
+      Contact : siohuhu.studio@gmail.com
+    </p>
+
+    <button type="button" class="btn-start" id="startBtn"><span>踏入霧中 · 開始旅程</span></button>
+    <p class="music-nudge" id="musicNudge">♩ 建議開啟背景音樂，右上角可播放</p>
+  </div>
+
+  <!-- ═══════ PROGRESS ═══════ -->
+  <div id="prog" aria-live="polite">
+    <div class="prog-row">
+      <span class="prog-lbl" id="plabel">第 1 題</span>
+      <span class="prog-n"  id="ppct">1 / 8</span>
+    </div>
+    <div class="prog-track" role="progressbar" aria-label="測驗進度" aria-valuemin="1" aria-valuemax="8" aria-valuenow="1"><div class="prog-fill" id="pfill" style="width:0%"></div></div>
+  </div>
+
+  <!-- ═══════ QUESTION AREA ═══════ -->
+  <div id="qarea" aria-live="polite"></div>
+
+  <!-- ═══════ RESULT ═══════ -->
+  <div id="result" aria-live="polite">
+    <div class="result-card">
+      <div class="r-shimmer" aria-hidden="true"></div>
+      <div class="r-bar" id="rbar"></div>
+      <div class="r-icon" id="ricon"></div>
+      <h2 class="r-type-en"  id="rtype-en"></h2>
+      <span class="r-type-zh" id="rtype-zh"></span>
+      <div class="r-tarot-line" id="rtarot"></div>
+      <hr class="r-rule">
+      <p class="r-body" id="rbody"></p>
+      <div class="mirror-box">
+        <div class="mirror-text" id="rmirror"></div>
+        <div class="mirror-attr">— Sea of Mirrors · 鏡之海 · 風之電話亭留言</div>
+      </div>
+      <div class="data-note" id="resultSummaryNote">
+        <b>結果說明：</b>本次結果僅保留於你的瀏覽工作階段，內容包含作答選項、反應時間與旅人類型。
+              我們不會在此頁面蒐集可辨識個人身分的資料；如需留存，可自行匯出本次紀錄。
+      </div>
+      <div class="r-actions" data-html2canvas-ignore>
+  <button type="button" class="btn share" id="shareBtn" aria-describedby="resultSummaryNote">
+  <span id="shareBtnTxt">✧ 開啟結果卡片 ✧</span>
+</button>
+
+  <button type="button" class="btn" id="restartBtn">↺ 再次測驗</button>
+  <button type="button" class="btn dark" id="dataToggleBtn">查看本次摘要</button>
+</div>
+<p class="share-hint">
+  點擊開啟結果卡片後，手機可直接分享或長按保存；桌機可下載圖片後再分享。<br>
+</p>
+    </div>
+    <footer style="margin-top: 50px; padding-bottom: 30px; text-align: center; color: rgba(0,0,0,0.4); font-size: 0.8rem; line-height: 1.6;">
+        <p>© 2026 Sea of Mirrors · 鏡之海<br>
+        All Rights Reserved. Designed by Siohuhu.Studio</p>
+    </footer>
+  </div>
+
+  <!-- ═══════ IMAGE PREVIEW OVERLAY ═══════ -->
+  <div id="imagePreviewOverlay" class="preview-overlay" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="previewHint">
+    <div class="preview-content" tabindex="-1">
+      <img id="previewImage" src="" alt="Sea of Mirrors 結果卡片預覽">
+      <p class="preview-hint" id="previewHint">這是你的專屬結果卡片。手機可長按保存或分享，桌機可右鍵另存圖片。</p>
+      <button type="button" class="btn close-btn" id="closePreviewBtn">返回測驗結果</button>
+    </div>
+  </div>
+
+  <!-- ═══════ DATA PANEL ═══════ -->
+  <div id="data-panel" aria-live="polite">
+    <div class="dp-wrap">
+      <div class="dp-title">測驗摘要 · 本次結果</div>
+      <div class="dp-grid" id="dpgrid"></div>
+      <div class="dp-meta" id="dpmeta"></div>
+      <button type="button" class="btn-export" id="exportJsonBtn">⬇ 匯出本次結果 JSON</button>
+    </div>
+  </div>
+
+  <div class="pg-footer">
+    Sea of Mirrors · 鏡之海 &nbsp;·&nbsp; 旅人測驗<br>
+    美術參考：Monument Valley<br>
+    插圖概念：黑獅子、白鳥與流浪旅人 by Zhen.(Siohuhu.Studio)<br>
+    Music：Misty lake by HarumachiMusic 
+  </div>
+
+</div><!-- /page -->
+
+<script>
+/* ─────────── PARTICLES ─────────── */
+!function(){
+  var c=document.getElementById('ptcl');
+  for(var i=0;i<16;i++){
+    var p=document.createElement('div');
+    p.className='pt';
+    var s=Math.random()*2.5+.8;
+    p.style.cssText='width:'+s+'px;height:'+s+'px;left:'+(Math.random()*100)+'%;animation-duration:'+(Math.random()*28+18)+'s;animation-delay:'+(Math.random()*14)+'s;';
+    c.appendChild(p);
+  }
+}();
+
+/* ─────────── QUESTIONS ─────────── */
+var QS=[
+  {
+    q:'你走在海岸邊，大霧遮住了前方的路。你的第一個動作是——',
+    opts:[
+      {t:'停下來，等霧散，聽風的聲音',           e:'fog'},
+      {t:'繼續走，霧裡也許有什麼在等',           e:'bird'},
+      {t:'在沙地上畫下你站的位置，然後再走',     e:'stone'},
+      {t:'走進霧裡，不回頭',                     e:'thorn'}
+    ]
+  },
+  {
+    q:'你在海邊撿到一面破碎的鏡子，只剩一個角落還能映出影像。鏡中你看見——',
+    opts:[
+      {t:'你以前住過的地方，但你不記得它',       e:'stone'},
+      {t:'一個你從未見過的人，正在看著你',       e:'thorn'},
+      {t:'什麼都沒有，只有霧',                   e:'fog'},
+      {t:'一隻鳥，在你肩上，但現實中沒有',       e:'bird'}
+    ]
+  },
+  {
+    q:'夜裡你聽見電話的鈴聲。你接起來，聽見——',
+    opts:[
+      {t:'自己的聲音說：「我還在這裡。」',       e:'stone'},
+      {t:'自己的聲音說：「你應該繼續走。」',     e:'bird'},
+      {t:'一段你說過但想忘記的話',               e:'thorn'},
+      {t:'什麼都沒有，只有風的低語',             e:'fog'}
+    ]
+  },
+  {
+    q:'鏡之海裡的石頭每一塊都是一個失去的名字。你會——',
+    opts:[
+      {t:'把一塊石頭放進口袋，帶著它走',         e:'stone'},
+      {t:'在石頭上寫下一個你快忘記的名字',       e:'thorn'},
+      {t:'坐在石頭旁邊，一直坐到天亮',           e:'fog'},
+      {t:'繼續走，沒有停下來',                   e:'bird'}
+    ]
+  },
+  {
+    q:'一隻白色的鳥停在你面前，然後飛走了。你的感受最接近——',
+    opts:[
+      {t:'像是什麼事情結束了',                   e:'stone'},
+      {t:'一種想跟著飛走的衝動',                 e:'bird'},
+      {t:'一種莫名的委屈',                       e:'thorn'},
+      {t:'平靜，就像看見風吹過草地',             e:'fog'}
+    ]
+  },
+  {
+    q:'如果鏡之海是一本書，你會怎麼開始讀？',
+    opts:[
+      {t:'從最後一頁往前讀',                     e:'stone'},
+      {t:'隨機翻到一頁，就從那裡開始',           e:'bird'},
+      {t:'先看封面看很久，然後才翻開',           e:'fog'},
+      {t:'跳過所有描述，只讀對話',               e:'thorn'}
+    ]
+  },
+  {
+    q:'你在霧中走了很久，發現自己回到了起點。你想——',
+    opts:[
+      {t:'也許起點就是目的地',                   e:'stone'},
+      {t:'這次我要走另一條路',                   e:'bird'},
+      {t:'也許我從來沒有離開過',                 e:'fog'},
+      {t:'有些路必須重走才知道它是什麼',         e:'thorn'}
+    ]
+  },
+  {
+    q:'旅途結束，你在海邊留下一樣東西。你留下——',
+    opts:[
+      {t:'什麼都沒有留，你帶走了所有的重量',     e:'thorn'},
+      {t:'一封沒有地址的信，壓在石頭下',         e:'stone'},
+      {t:'你的影子，讓它繼續留在那裡',           e:'fog'},
+      {t:'一根羽毛，讓風決定它去哪裡',           e:'bird'}
+    ]
+  }
+];
+
+/* ─────────── ARCHETYPES ─────────── */
+var AR={
+  fog:{
+    en:'Wanderer of the Mist',
+    zh:'霧中的旅人',
+    tarot:'🌙 月亮 · 節制 · 女教宗',
+    bar:'linear-gradient(90deg,#8a9898,#aeb8c4)',
+    body:'你是鏡之海裡最難被定義的旅人。你走在霧裡，不是因為迷路，而是因為霧給了你一種自由——不必被看見，也不必做任何決定。你的旅途是感受的旅途，而非目標的旅途。你知道有些事情不需要答案，它們只需要被待在一起。電話亭對你來說不是工具，是一個你有時走過、有時不進去的地方。',
+    mirror:'什麼都沒有，只有風的低語，\n和遠方隱約的海浪聲。\n\n但你繼續站著。\n那也是一種存在。',
+    icon:'fog'
+  },
+  stone:{
+    en:'Keeper of the Shore',
+    zh:'海岸的守護者',
+    tarot:'🌿 隱者 · 皇帝 · 命運之輪',
+    bar:'linear-gradient(90deg,#7a7870,#b6a990)',
+    body:'你是那種會在沙地上畫下座標的人——不是為了控制，而是因為你知道，記住自己站的位置，才能真正地出發。你和鏡之海的關係是一種長期的、安靜的協商。你的失物通常是那些「你本來已經放下了，卻發現沒有」的東西。你不怕鏡子，你只是還沒準備好看見裡面的自己。',
+    mirror:'「我還在這裡。」\n你說的時候，海也說了同樣的話。\n\n你們說的是不同的事，\n但聲音是一樣的。',
+    icon:'stone'
+  },
+  thorn:{
+    en:'Seeker of the Hidden Name',
+    zh:'尋找隱藏名字的人',
+    tarot:'🌹 死神 · 塔 · 倒吊人',
+    bar:'linear-gradient(90deg,#907080,#c0a0a0)',
+    body:'你走進鏡之海，帶著的不是問題，而是一個你從沒說出口的名字。你不迴避痛苦的事物，你反而朝著它走——不是因為不怕，而是因為你知道繞開它沒有用。電話亭的留言對你來說是一面魔鏡：你聽見的，往往是你希望有人對你說的話。失物之書裡，你守護的是那些「被說到一半就停下的故事」。',
+    mirror:'你在石頭上寫下了那個名字。\n海沒有回應。\n\n但你覺得輕了一點。\n那已經足夠了。',
+    icon:'thorn'
+  },
+  bird:{
+    en:'Follower of the White Bird',
+    zh:'跟隨白鳥的人',
+    tarot:'⭐ 星星 · 愚者 · 審判',
+    bar:'linear-gradient(90deg,#8898a8,#b0c0c8)',
+    body:'你是那種看見白鳥飛走，就想跟著飛的人。你的旅途不是從起點到終點的直線，而是由一個個偶然組成的星圖。你和鏡之海的關係是直覺性的——你不問為什麼，你只是走進去了。你的失物通常是「你以為不在乎，直到有一天發現它消失了」的東西。白鳥是你的旅途指南，雖然牠從來不等你。',
+    mirror:'羽毛落在你手心，\n然後風把它帶走了。\n\n你站在原地，\n那個瞬間，已經足夠了。',
+    icon:'bird'
+  }
+};
+
+/* ─────────── STATE ─────────── */
+var scores={fog:0,stone:0,thorn:0,bird:0};
+var curr=0;
+var session={start:0,answers:[],result:null,qTimes:[]};
+var qStart=0;
+var dataVisible=false;
+var questionLocked=false;
+var lastFocusedElement=null;
+
+/* ─────────── SVG ICONS ─────────── */
+var ICONS={
+  fog:'<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="28" stroke="#8a9898" stroke-width="1.6" fill="rgba(138,152,152,.1)"/><ellipse cx="36" cy="38" rx="16" ry="6" fill="rgba(174,184,196,.22)"/><ellipse cx="36" cy="33" rx="11" ry="4" fill="rgba(174,184,196,.18)"/><ellipse cx="36" cy="28" rx="7" ry="2.5" fill="rgba(174,184,196,.14)"/><line x1="20" y1="46" x2="52" y2="46" stroke="#8a9898" stroke-width=".7" opacity=".65"/><line x1="24" y1="50" x2="48" y2="50" stroke="#8a9898" stroke-width="1.2" opacity=".6"/></svg>',
+  stone:'<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="28" stroke="#7a7870" stroke-width="1.6" fill="rgba(120,120,112,.1)"/><polygon points="36,19 50,46 22,46" fill="rgba(122,120,112,.18)" stroke="#7a7870" stroke-width="1.2"/><line x1="29" y1="35" x2="43" y2="35" stroke="#a09888" stroke-width="1.2" opacity=".75"/><line x1="31" y1="40" x2="41" y2="40" stroke="#a09888" stroke-width="1.2" opacity=".6"/></svg>',
+  thorn:'<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="28" stroke="#907080" stroke-width="1.6" fill="rgba(144,112,128,.1)"/><path d="M36 20 C36 20 41 27 41 34 C41 41 36 43 36 50 C36 43 31 41 31 34 C31 27 36 20 36 20Z" fill="rgba(144,112,128,.22)" stroke="#907080" stroke-width="1.2"/><path d="M26 35 L32 33" stroke="#c0a0a0" stroke-width="1.7" opacity=".75"/><path d="M46 35 L40 33" stroke="#c0a0a0" stroke-width="1.2" opacity=".7"/><circle cx="36" cy="50" r="1.5" fill="#907080" opacity=".7"/></svg>',
+  bird:'<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="36" cy="36" r="28" stroke="#8898a8" stroke-width="1.6" fill="rgba(136,152,168,.1)"/><path d="M23 40 Q29.5 33 36 35 Q42.5 33 49 40" stroke="#8898a8" stroke-width="1.2" fill="none" opacity=".65"/><path d="M30 35 Q33 31 36 33" stroke="#b0c0c8" stroke-width="1.2" fill="none" opacity=".55"/><path d="M42 35 Q39 31 36 33" stroke="#b0c0c8" stroke-width="1.7" fill="none" opacity=".7"/><circle cx="36" cy="45" r="2.5" fill="rgba(136,152,168,.28)" stroke="#8898a8" stroke-width="1.2"/></svg>',
+};
+
+/* ─────────── START ─────────── */
+function startQuiz(){
+  // 讓 hover 音效再響一小段（約 420ms），再慢慢淡出換頁
+  // 不立刻 stopAllSFX，讓手機觸碰音效有時間播出來
+  closePreview(true);
+  scores={fog:0,stone:0,thorn:0,bird:0};
+  curr=0;
+  session={start:Date.now(),answers:[],result:null,qTimes:[]};
+  dataVisible=false;
+  questionLocked=false;
+
+  var cover = document.getElementById('cover');
+  cover.classList.add('fading-out');
+
+  // 800ms 後漸淡停音效，讓手機使用者聽完大半段
+  setTimeout(function(){ stopAllSFX(); }, 800);
+
+  setTimeout(function(){
+    cover.classList.add('gone');
+    cover.classList.remove('fading-out');
+    document.getElementById('result').style.display='none';
+    document.getElementById('data-panel').style.display='none';
+    document.getElementById('prog').style.display='block';
+    renderQ();
+  }, 1300);
+}
+
+/* ─────────── RENDER QUESTION ─────────── */
+function renderQ(){
+  var qa=document.getElementById('qarea');
+  if(curr>=QS.length){ showResult(); return; }
+
+  var pct=Math.round(curr/QS.length*100);
+  document.getElementById('pfill').style.width=pct+'%';
+  document.querySelector('.prog-track').setAttribute('aria-valuenow', curr+1);
+  document.getElementById('plabel').textContent='第 '+(curr+1)+' 題，共 '+QS.length+' 題';
+  document.getElementById('ppct').textContent=(curr+1)+' / '+QS.length;
+
+  questionLocked=false;
+  qStart=Date.now();
+  var q=QS[curr];
+  var opts=shuffleOptions(q.opts);
+  var html='<div class="q-card"><div class="q-eyebrow">Question '+(curr+1)+' · Sea of Mirrors</div>'
+    +'<div class="q-text">'+q.q+'</div><div class="q-opts" role="list">';
+  opts.forEach(function(o){
+    html+='<button type="button" class="q-opt" data-e="'+o.e+'" onclick="pick(this)" aria-pressed="false">'+o.t+'</button>';
+  });
+  html+='</div></div>';
+  qa.innerHTML=html;
+  var firstOpt=qa.querySelector('.q-opt');
+  if(firstOpt) firstOpt.focus();
+}
+
+function shuffleOptions(list){
+  var opts=list.slice();
+  for(var i=opts.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var tmp=opts[i];
+    opts[i]=opts[j];
+    opts[j]=tmp;
+  }
+  return opts;
+}
+
+/* ─────────── PICK ─────────── */
+function pick(el){
+  if(questionLocked) return;
+  questionLocked=true;
+  playSFX('select');  // 立刻響，選中回饋
+  document.querySelectorAll('.q-opt').forEach(function(o){
+    o.classList.remove('chosen');
+    o.setAttribute('aria-pressed','false');
+    o.disabled=true;
+  });
+  el.classList.add('chosen');
+  el.setAttribute('aria-pressed','true');
+  var e=el.getAttribute('data-e');
+  var ms=Date.now()-qStart;
+  scores[e]++;
+  session.answers.push({q:curr+1,choice:e,text:el.textContent.trim(),ms:ms});
+  session.qTimes.push(ms);
+  setTimeout(function(){
+    curr++;
+    renderQ();
+  },620);
+}
+
+/* ─────────── SHOW RESULT ─────────── */
+function showResult(){
+  document.getElementById('qarea').innerHTML='';
+  document.getElementById('prog').style.display='none';
+
+  var sorted=Object.keys(scores).sort(function(a,b){return scores[b]-scores[a];});
+  var max = Math.max(...Object.values(scores));
+  var candidates = Object.keys(scores).filter(k => scores[k] === max);
+  var top = candidates[Math.floor(Math.random() * candidates.length)];
+  var r=AR[top];
+  session.result={key:top,scores:JSON.parse(JSON.stringify(scores)),totalMs:Date.now()-session.start};
+
+  document.getElementById('rbar').style.background=r.bar;
+  document.getElementById('ricon').innerHTML=ICONS[r.icon];
+  document.getElementById('rtype-en').textContent=r.en;
+  document.getElementById('rtype-zh').textContent=r.zh;
+  document.getElementById('rtarot').textContent=r.tarot;
+  document.getElementById('rbody').textContent=r.body;
+  document.getElementById('rmirror').innerHTML=r.mirror.replace(/\n/g,'<br>');
+
+  var rd=document.getElementById('result');
+  rd.style.display='block';
+  rd.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ─────────── RESTART ─────────── */
+function restartQuiz(){
+  closePreview(true);
+  document.getElementById('result').style.display='none';
+  document.getElementById('data-panel').style.display='none';
+  document.getElementById('cover').classList.remove('gone');
+  dataVisible=false;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ─────────── TOGGLE DATA ─────────── */
+function toggleData(){
+  var dp=document.getElementById('data-panel');
+  var toggleBtn = document.getElementById('dataToggleBtn');
+  dataVisible=!dataVisible;
+  if (toggleBtn) toggleBtn.setAttribute('aria-expanded', dataVisible ? 'true' : 'false');
+  if(!dataVisible){ dp.style.display='none'; return; }
+  dp.style.display='block';
+  renderDataPanel();
+  dp.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function renderDataPanel(){
+  var total=QS.length;
+  var s=session.result.scores;
+  var labels={fog:'霧中旅人',stone:'海岸守護',thorn:'荊棘尋名',bird:'白鳥跟隨'};
+  var sorted=Object.keys(s).sort(function(a,b){return s[b]-s[a];});
+  var html='';
+  sorted.forEach(function(k){
+    var pct=Math.round(s[k]/total*100);
+    html+='<div class="dp-cell"><div class="dp-lbl">'+labels[k]+'</div>'
+      +'<div class="dp-val">'+s[k]+' 分 &nbsp;('+pct+'%)</div>'
+      +'<div class="dp-bar"><div class="dp-bfill" style="width:'+pct+'%"></div></div></div>';
+  });
+  document.getElementById('dpgrid').innerHTML=html;
+
+  var avgMs=Math.round(session.qTimes.reduce(function(a,b){return a+b;},0)/session.qTimes.length/1000);
+  var totSec=Math.round(session.result.totalMs/1000);
+  document.getElementById('dpmeta').innerHTML=
+    '本次結果：<b>'+AR[session.result.key].zh+'</b> &nbsp;·&nbsp; '
+    +'平均作答：<b>'+avgMs+'</b> 秒 &nbsp;·&nbsp; 完成時間：<b>'+totSec+'</b> 秒<br>'
+    +'<i>這份摘要僅用於你此刻的瀏覽體驗與結果留存，不代表任何心理診斷或正式人格分類。</i>';
+}
+
+/* ─────────── EXPORT JSON ─────────── */
+function exportJSON(){
+  var payload={
+    meta:{name:'Sea of Mirrors · 鏡之海 · 旅人測驗',ts:new Date().toISOString()},
+    result:{key:session.result.key,zh:AR[session.result.key].zh,scores:session.result.scores,totalSec:Math.round(session.result.totalMs/1000)},
+    answers:session.answers.map(function(a){return{q:a.q,type:a.choice,sec:Math.round(a.ms/1000),text:a.text};}),
+    timing:{perQuestionSec:session.qTimes.map(function(t){return Math.round(t/1000);}),avgSec:Math.round(session.qTimes.reduce(function(a,b){return a+b;},0)/session.qTimes.length/1000)}
+  };
+  var blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=url; a.download='sea-of-mirrors-result-'+Date.now()+'.json'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* ─────────── MUSIC PLAYER ─────────── */
+var musicPlaying = false;
+var musicReady   = false;
+var hintTimer    = null;
+
+// ★ CHANGE THIS to your actual audio file path when deployed
+var AUDIO_SRC = './music/misty-lake.mp3';
+
+function initAudio() {
+  var audio = document.getElementById('bgAudio');
+  audio.src = AUDIO_SRC;
+  audio.volume = 0;
+  musicReady = true;
+}
+
+function toggleMusic() {
+  if (!musicReady) initAudio();
+  var audio = document.getElementById('bgAudio');
+  var btn   = document.getElementById('musicBtn');
+
+  if (musicPlaying) {
+    fadeAudio(audio, audio.volume, 0, 600, function() { audio.pause(); });
+    btn.classList.remove('playing');
+    btn.setAttribute('aria-pressed', 'false');
+    musicPlaying = false;
+    showHint('♪ 音樂已暫停');
+  } else {
+    audio.play().then(function() {
+      fadeAudio(audio, 0, 0.38, 1200, null);
+      btn.classList.add('playing');
+      btn.setAttribute('aria-pressed', 'true');
+      musicPlaying = true;
+      showHint('♩ 背景音樂播放中');
+    }).catch(function(err) {
+      showHint('⚠ 請先點擊頁面再開啟音樂');
+    });
+  }
+}
+
+function fadeAudio(audio, from, to, ms, cb) {
+  var steps = 30;
+  var interval = ms / steps;
+  var step = (to - from) / steps;
+  var current = 0;
+  var timer = setInterval(function() {
+    current++;
+    var newVol = from + step * current;
+    if (newVol < 0) newVol = 0;
+    if (newVol > 1) newVol = 1;
+    audio.volume = newVol;
+    if (current >= steps) {
+      clearInterval(timer);
+      if (cb) cb();
+    }
+  }, interval);
+}
+
+function showHint(msg) {
+  var hint = document.getElementById('musicHint');
+  hint.textContent = msg;
+  hint.classList.add('show');
+  if (hintTimer) clearTimeout(hintTimer);
+  hintTimer = setTimeout(function() {
+    hint.classList.remove('show');
+  }, 2200);
+}
+/* ─────────── SFX SYSTEM ─────────── */
+/*
+  hover.mp3  — 滑過答案選項
+  click.mp3  — 一般按鈕點擊（開始旅程、再次測驗、查看摘要、返回、匯出）
+  select.mp3 — 答案確認選中
+*/
+
+var SFX = {
+  hover: new Audio('./hover.mp3'),
+  click: new Audio('./click.mp3'),
+  select: new Audio('./select.mp3')
+
+};
+
+Object.values(SFX).forEach(function(a){ 
+  a.volume = 0.45;
+  a.preload = 'auto';
+ });
+
+function playSFX(name) {
+  var a = SFX[name];
+  if (!a) return;
+  a.currentTime = 0;
+  a.play().catch(function(){});
+}
+
+/* ─────────── HOVER SOUND — 僅限開始按鈕 ─────────── */
+var hoverFadeTimer = null;
+
+function startHoverSound() {
+  var a = SFX['hover'];
+  if (!a) return;
+  // 清掉任何進行中的漸淡
+  if (hoverFadeTimer) { clearInterval(hoverFadeTimer); hoverFadeTimer = null; }
+  a.pause();
+  a.currentTime = 0;
+  a.volume = 0.45;
+  a.loop = true;   // 停在按鈕上就持續循環，有徘徊感
+  a.play().catch(function(){});
+}
+
+function stopHoverSound() {
+  var a = SFX['hover'];
+  if (!a || a.paused) return;
+  a.loop = false;
+  // 離開後 600ms 漸淡，柔和收尾
+  var steps = 20;
+  var interval = 30; // 20 × 30ms = 700ms
+  var startVol = a.volume;
+  var decrement = startVol / steps;
+  hoverFadeTimer = setInterval(function() {
+    if (a.volume > decrement) {
+      a.volume = Math.max(0, a.volume - decrement);
+    } else {
+      a.volume = 0;
+      a.pause();
+      clearInterval(hoverFadeTimer);
+      hoverFadeTimer = null;
+    }
+  }, interval);
+}
+
+// mouseenter / mouseleave 不會因子元素重複觸發
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.querySelector('.btn-start');
+  if (btn) {
+    // 桌機：hover 進入 / 離開
+    btn.addEventListener('mouseenter', startHoverSound);
+    btn.addEventListener('mouseleave', stopHoverSound);
+
+    // 手機：touchstart 立刻播 hover 音效
+    btn.addEventListener('touchstart', function() {
+      startHoverSound();
+    }, { passive: true });
+  }
+
+  bindUIActions();
+});
+
+// 換頁（startQuiz）時強制停止，避免殘留
+function stopAllSFX() {
+  stopHoverSound();
+  Object.values(SFX).forEach(function(a) {
+    a.loop = false;
+    a.pause();
+    a.currentTime = 0;
+  });
+}
+
+function bindUIActions() {
+  var startBtn = document.getElementById('startBtn');
+  var musicBtn = document.getElementById('musicBtn');
+  var shareBtn = document.getElementById('shareBtn');
+  var restartBtn = document.getElementById('restartBtn');
+  var dataToggleBtn = document.getElementById('dataToggleBtn');
+  var closePreviewBtn = document.getElementById('closePreviewBtn');
+  var exportJsonBtn = document.getElementById('exportJsonBtn');
+  var previewOverlay = document.getElementById('imagePreviewOverlay');
+  var previewContent = previewOverlay ? previewOverlay.querySelector('.preview-content') : null;
+
+  if (startBtn) {
+    startBtn.addEventListener('click', function() {
+      playSFX('click');
+      startQuiz();
+    });
+  }
+
+  if (musicBtn) {
+    musicBtn.addEventListener('click', function() {
+      toggleMusic();
+    });
+  }
+
+  if (shareBtn) {
+    shareBtn.addEventListener('click', function() {
+      playSFX('click');
+      showSharePreview();
+    });
+  }
+
+  if (restartBtn) {
+    restartBtn.addEventListener('click', function() {
+      playSFX('click');
+      restartQuiz();
+    });
+  }
+
+  if (dataToggleBtn) {
+    dataToggleBtn.setAttribute('aria-expanded', 'false');
+    dataToggleBtn.addEventListener('click', function() {
+      playSFX('click');
+      toggleData();
+    });
+  }
+
+  if (closePreviewBtn) {
+    closePreviewBtn.addEventListener('click', function() {
+      playSFX('click');
+      closePreview();
+    });
+  }
+
+  if (exportJsonBtn) {
+    exportJsonBtn.addEventListener('click', function() {
+      playSFX('click');
+      exportJSON();
+    });
+  }
+
+  if (previewOverlay) {
+    previewOverlay.addEventListener('click', function() {
+      closePreview();
+    });
+  }
+
+  if (previewContent) {
+    previewContent.addEventListener('click', function(event) {
+      event.stopPropagation();
+    });
+  }
+}
+
+
+// Respect page visibility — pause when tab hidden
+document.addEventListener('visibilitychange', function() {
+  var audio = document.getElementById('bgAudio');
+  if (document.hidden && musicPlaying) {
+    audio.pause();
+  } else if (!document.hidden && musicPlaying) {
+    audio.play().catch(function(){});
+  }
+});
+
+/* ─────────── SHARE IMAGE EXPORT ─────────── */
+
+/* ─────────── SHARE IMAGE DOWNLOAD (REPLACED) ─────────── */
+
+// 1. 定義結果 key 與圖檔檔名的對應關係
+/* ─────────── 圖片預覽功能 ─────────── */
+
+var SHARE_PAGE_URL = 'https://siohuhu.github.io/sea-of-mirrors/';
+
+var SHARE_IMAGE_FILES = {
+  fog:   './og-fog.png',   
+  stone: './og-stone.png', 
+  thorn: './og-thorn.png', 
+  bird:  './og-bird.png'   
+};
+
+// 顯示預覽層
+function setPreviewOpen(isOpen) {
+  var overlay = document.getElementById('imagePreviewOverlay');
+  if (!overlay) return;
+
+  overlay.hidden = !isOpen;
+  overlay.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+  document.body.classList.toggle('preview-open', isOpen);
+  document.documentElement.classList.toggle('preview-open', isOpen);
+}
+
+function showSharePreview() {
+  if (!session.result || !session.result.key) return;
+
+  var resultKey = session.result.key;
+  var imgFileName = SHARE_IMAGE_FILES[resultKey];
+  var overlay = document.getElementById('imagePreviewOverlay');
+  var previewContent = overlay ? overlay.querySelector('.preview-content') : null;
+
+  var previewImg = document.getElementById('previewImage');
+  if (previewImg && imgFileName && overlay) {
+    lastFocusedElement = document.activeElement;
+    previewImg.src = imgFileName;
+    previewImg.alt = 'Sea of Mirrors ' + AR[resultKey].zh + ' 分享圖';
+    setPreviewOpen(true);
+    if (previewContent) previewContent.focus();
+  }
+}
+
+function closePreview(skipFocusRestore) {
+  var overlay = document.getElementById('imagePreviewOverlay');
+  var previewImg = document.getElementById('previewImage');
+  if (!overlay) return;
+
+  setPreviewOpen(false);
+  if (previewImg) previewImg.removeAttribute('src');
+
+  if (!skipFocusRestore && lastFocusedElement && lastFocusedElement.isConnected && typeof lastFocusedElement.focus === 'function') {
+    window.requestAnimationFrame(function() {
+      lastFocusedElement.focus();
+    });
+  }
+}
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closePreview();
+  }
+});
+async function copyShareLink() {
+  var result = session.result;
+  var shareText = result
+    ? '【鏡之海旅人測驗】我的結果是「' + AR[result.key].zh + '」｜' + AR[result.key].tarot + ' ' + SHARE_PAGE_URL
+    : SHARE_PAGE_URL;
+
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(shareText);
+    } else {
+      var input = document.createElement('textarea');
+      input.value = shareText;
+      input.setAttribute('readonly', '');
+      input.style.position = 'fixed';
+      input.style.opacity = '0';
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      document.body.removeChild(input);
+    }
+    showHint('已複製分享文字');
+  } catch (err) {
+    showHint('複製失敗，請手動複製頁面連結');
+  }
+}
+
+/* Facebook share — sends the canonical page URL */
+async function nativeShare() {
+  if (!session.result) return;
+
+  const shareData = {
+    title: 'Sea of Mirrors · 鏡之海',
+    text: `【鏡之海旅人測驗】\n我的結果是：${AR[session.result.key].zh}\n「${AR[session.result.key].tarot}」\n\n來看看你在大霧海岸上的位置。`,
+    url: SHARE_PAGE_URL 
+  };
+
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+    } catch (err) {
+      console.log('使用者取消分享');
+      showHint('分享已取消');
+    }
+  } else {
+
+ // fallback：Facebook 分享
+window.open(
+      'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(SHARE_PAGE_URL),
+      '_blank'
+     );
+   }
+  }
+
+</script>
+</body>
+</html>
