@@ -10,16 +10,31 @@ on:
       - '**.png'
 
 jobs:
-  build:
+  compress:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Compress Images
-        uses: calibreapp/image-actions@main
         with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          jpegQuality: '80'
-          pngQuality: '80'
-          webpQuality: '80'
-          ignorePaths: 'node_modules/**'
+          fetch-depth: 0
+
+      - name: Install imagemin
+        run: |
+          npm install -g imagemin-cli imagemin-mozjpeg imagemin-pngquant
+
+      - name: Compress JPG
+        run: |
+          find . -name "*.jpg" -o -name "*.jpeg" | grep -v node_modules | grep -v .git | while read f; do
+            imagemin "$f" --plugin=mozjpeg --out-dir="$(dirname $f)"
+          done
+
+      - name: Compress PNG
+        run: |
+          find . -name "*.png" | grep -v node_modules | grep -v .git | while read f; do
+            imagemin "$f" --plugin=pngquant --out-dir="$(dirname $f)"
+          done
+
+      - name: Commit compressed images
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: compress images"
+          file_pattern: "*.jpg *.jpeg *.png"
