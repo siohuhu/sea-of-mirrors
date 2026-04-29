@@ -37,4 +37,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: compress images"
-          file_pattern: "*.jpg *.jpeg *.png"
+          file_pattern: "*.jpg *.png image/*.jpg image/*.png"
