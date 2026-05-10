@@ -903,15 +903,13 @@ body.preview-open, html.preview-open {
   background: rgba(58,56,50,.06);
   color: var(--ink-soft);
 }
-.studio-link img {
+.studio-link svg {
   width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
+  height: 30px;
   opacity: .82;
   transition: opacity .25s;
 }
-.studio-link:hover img { opacity: 1; }
+.studio-link:hover svg { opacity: 1; }
 .studio-link span {
   font-family: 'IM Fell English', serif;
   font-style: italic;
@@ -1091,7 +1089,19 @@ window.saveMessage = async function(message, resultKey) {
         All Rights Reserved. Designed by Siohuhu.Studio</p>
         <hr style="margin: 18px auto; width: 48px; border: none; border-top: 0.5px solid rgba(58,56,50,.18);">
         <a class="studio-link" href="https://www.siohuhu.studio" target="_blank" rel="noopener" aria-label="Siohuhu Studio">
-          <img src="image/siohuhu_logo.png" alt="Siohuhu Studio logo">
+          <!-- inline SVG：雙圓圈笑臉，不依賴圖片路徑 -->
+          <svg viewBox="0 0 56 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="18" cy="18" r="16" fill="#c8d44e"/>
+            <circle cx="36" cy="18" r="16" fill="#5bbccc"/>
+            <!-- 左臉 -->
+            <path d="M13 16 Q15 19 17 16" stroke="#2a2825" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+            <circle cx="12" cy="14" r="0.8" fill="#2a2825"/>
+            <circle cx="17" cy="14" r="0.8" fill="#2a2825"/>
+            <!-- 右臉 -->
+            <path d="M31 16 Q33 19 35 16" stroke="#2a2825" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+            <circle cx="30" cy="14" r="0.8" fill="#2a2825"/>
+            <circle cx="35" cy="14" r="0.8" fill="#2a2825"/>
+          </svg>
           <span>www.siohuhu.studio</span>
         </a>
     </footer>
