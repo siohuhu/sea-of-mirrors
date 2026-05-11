@@ -1490,21 +1490,26 @@ function toggleMusic() {
   var btn   = document.getElementById('musicBtn');
 
   if (musicPlaying) {
-    fadeAudio(audio, audio.volume, 0, 600, function() { audio.pause(); });
+    audio.pause();
+    audio.volume = 0;
     btn.classList.remove('playing');
     btn.setAttribute('aria-pressed', 'false');
     musicPlaying = false;
     showHint('♪ 音樂已暫停');
   } else {
-    audio.play().then(function() {
-      fadeAudio(audio, 0, 0.38, 1200, null);
-      btn.classList.add('playing');
-      btn.setAttribute('aria-pressed', 'true');
-      musicPlaying = true;
-      showHint('♩ 背景音樂播放中');
-    }).catch(function(err) {
-      showHint('⚠ 請先點擊頁面再開啟音樂');
-    });
+    // iOS 必須在手勢 callstack 內直接設 volume 再 play，不能用 setInterval
+    audio.volume = 0.38;
+    var p = audio.play();
+    if (p !== undefined) {
+      p.then(function() {
+        btn.classList.add('playing');
+        btn.setAttribute('aria-pressed', 'true');
+        musicPlaying = true;
+        showHint('♩ 背景音樂播放中');
+      }).catch(function() {
+        showHint('⚠ 請先點擊頁面再開啟音樂');
+      });
+    }
   }
 }
 
