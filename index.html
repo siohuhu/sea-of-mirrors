@@ -911,7 +911,14 @@ body.preview-open, html.preview-open {
   transition: opacity .25s;
 }
 .studio-link:hover img { opacity: 1; }
-.studio-link span {
+.studio-link span.studio-divider {
+  display: inline-block;
+  width: 0.5px;
+  height: 32px;
+  background: rgba(58,56,50,.20);
+  flex-shrink: 0;
+}
+.studio-link span:not(.studio-divider) {
   font-family: 'PingFang TC', 'Apple SD Gothic Neo', 'Noto Sans TC', sans-serif;
   font-weight: 300;
   font-size: .72rem;
@@ -1091,6 +1098,7 @@ window.saveMessage = async function(message, resultKey) {
         <hr style="margin: 18px auto; width: 48px; border: none; border-top: 0.5px solid rgba(58,56,50,.18);">
         <a class="studio-link" href="https://www.siohuhu.studio" target="_blank" rel="noopener" aria-label="Siohuhu Studio">
           <img src="siohuhu_logo_02.png" alt="Siohuhu Studio logo">
+          <span class="studio-divider"></span>
           <span>www.siohuhu.studio</span>
         </a>
     </footer>
