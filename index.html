@@ -889,9 +889,9 @@ body.preview-open, html.preview-open {
 /* ── Studio 入口連結 ── */
 .studio-link {
   display: inline-flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   text-decoration: none;
   color: var(--ink-ghost);
   margin-top: 10px;
@@ -904,18 +904,18 @@ body.preview-open, html.preview-open {
   color: var(--ink-soft);
 }
 .studio-link img {
-  width: 120px;
-  height: 120px;
+  width: 72px;
+  height: auto;
   object-fit: contain;
   opacity: .88;
   transition: opacity .25s;
 }
 .studio-link:hover img { opacity: 1; }
 .studio-link span {
-  font-family: 'IM Fell English', serif;
-  font-style: italic;
-  font-size: .68rem;
-  letter-spacing: .16em;
+  font-family: 'PingFang TC', 'Apple SD Gothic Neo', 'Noto Sans TC', sans-serif;
+  font-weight: 300;
+  font-size: .72rem;
+  letter-spacing: .12em;
 }
 
 </style>
@@ -1090,7 +1090,7 @@ window.saveMessage = async function(message, resultKey) {
         All Rights Reserved. Designed by Siohuhu.Studio</p>
         <hr style="margin: 18px auto; width: 48px; border: none; border-top: 0.5px solid rgba(58,56,50,.18);">
         <a class="studio-link" href="https://www.siohuhu.studio" target="_blank" rel="noopener" aria-label="Siohuhu Studio">
-          <img src="siohuhu_logo.png" alt="Siohuhu Studio logo">
+          <img src="siohuhu_logo_02.png" alt="Siohuhu Studio logo">
           <span>www.siohuhu.studio</span>
         </a>
     </footer>
