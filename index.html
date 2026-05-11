@@ -998,7 +998,7 @@ window.saveMessage = async function(message, resultKey) {
 <div class="music-hint" id="musicHint">♩ 背景音樂</div>
 
 <!-- audio element — src will be set by JS -->
-<audio id="bgAudio" loop preload="none"></audio>
+<audio id="bgAudio" preload="none"></audio>
 
 
 
@@ -1461,7 +1461,28 @@ function initAudio() {
   audio.src = AUDIO_SRC;
   audio.volume = 0;
   musicReady = true;
+
+  // iOS：loop 屬性不可靠，改用 ended 事件手動重播
+  audio.addEventListener('ended', function() {
+    if (musicPlaying) {
+      audio.currentTime = 0;
+      audio.play().catch(function(){});
+    }
+  });
 }
+
+// iOS Safari：從背景回來時重新 play
+window.addEventListener('pageshow', function() {
+  var audio = document.getElementById('bgAudio');
+  if (musicPlaying && audio.paused) {
+    audio.play().catch(function(){});
+  }
+});
+
+window.addEventListener('pagehide', function() {
+  var audio = document.getElementById('bgAudio');
+  if (musicPlaying) audio.pause();
+});
 
 function toggleMusic() {
   if (!musicReady) initAudio();
