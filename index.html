@@ -948,11 +948,15 @@ const db   = getFirestore(app);
 const auth = getAuth(app);
 
 /* ── 匿名登入（讓 Firestore 安全規則可以驗證合法寫入）── */
-signInAnonymously(auth).catch(e => console.warn('anon auth failed', e));
+const authReady = signInAnonymously(auth).catch(e => {
+  console.warn('anon auth failed', e);
+  throw e;
+});
 
 /* ── 造訪次數 ── */
 async function recordVisit() {
   try {
+    await authReady;
     const ref = doc(db, 'stats', 'visits');
     await setDoc(ref, { count: increment(1), lastVisit: serverTimestamp() }, { merge: true });
   } catch(e) { console.warn('visit record failed', e); }
@@ -962,6 +966,7 @@ recordVisit();
 /* ── 測驗結果寫入 ── */
 window.saveResult = async function(resultKey, archetype, scores, totalSec) {
   try {
+    await authReady;
     await addDoc(collection(db, 'results'), {
       type:      resultKey,
       zh:        archetype.zh,
@@ -971,20 +976,29 @@ window.saveResult = async function(resultKey, archetype, scores, totalSec) {
       ts:        serverTimestamp()
     });
     console.log('result saved');
-  } catch(e) { console.warn('result save failed', e); }
+    return true;
+  } catch(e) {
+    console.warn('result save failed', e);
+    return false;
+  }
 };
 
 /* ── 鏡中留言寫入 ── */
 window.saveMessage = async function(message, resultKey) {
-  if (!message || message.trim().length === 0) return;
+  if (!message || message.trim().length === 0) return false;
   try {
+    await authReady;
     await addDoc(collection(db, 'messages'), {
       message:   message.trim(),
       type:      resultKey || 'unknown',
       ts:        serverTimestamp()
     });
     console.log('message saved');
-  } catch(e) { console.warn('message save failed', e); }
+    return true;
+  } catch(e) {
+    console.warn('message save failed', e);
+    return false;
+  }
 };
 </script>
 </head>
@@ -1393,7 +1407,9 @@ function showResult(){
   /* ── Firebase：寫入測驗結果 ── */
   var totalSec = Math.round((Date.now() - session.start) / 1000);
   if (typeof window.saveResult === 'function') {
-    window.saveResult(top, r, JSON.parse(JSON.stringify(scores)), totalSec);
+    window.saveResult(top, r, JSON.parse(JSON.stringify(scores)), totalSec).then(function(saved) {
+      if (!saved) console.warn('result was not persisted');
+    });
   }
 }
 
@@ -1723,8 +1739,15 @@ function bindUIActions() {
       if (!msg) { phoneHint.textContent = '請輸入留言內容。'; return; }
       phoneSendBtn.disabled = true;
       phoneSendBtn.textContent = '傳送中…';
+      var saved = true;
       if (typeof window.saveMessage === 'function') {
-        await window.saveMessage(msg, session.result ? session.result.key : 'unknown');
+        saved = await window.saveMessage(msg, session.result ? session.result.key : 'unknown');
+      }
+      if (!saved) {
+        phoneSendBtn.disabled = false;
+        phoneSendBtn.textContent = '送出留言';
+        phoneHint.textContent = '留言送出失敗，請稍後再試。';
+        return;
       }
       phoneInput.value = '';
       phoneCount.textContent = '0';
@@ -1872,6 +1895,7 @@ async function nativeShare() {
   if (navigator.share && imgPath) {
     try {
       var response = await fetch(imgPath);
+      if (!response.ok) throw new Error('share image fetch failed: ' + response.status);
       var blob = await response.blob();
       var fileName = 'sea-of-mirrors-' + resultKey + '.png';
       var file = new File([blob], fileName, { type: blob.type || 'image/png' });
