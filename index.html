@@ -54,6 +54,17 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Serif+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap');
 
+@font-face {
+  font-family: 'MonumentValley12-X55o';
+  src:
+    url('./fonts/MonumentValley12-X55o.woff2') format('woff2'),
+    url('./fonts/MonumentValley12-X55o.otf') format('opentype'),
+    local('MonumentValley12-X55o');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ═══════════════════════════════════════
    PALETTE — extracted from concept art
    Feather Figure: fog-white, cool blue-grey, warm bone
@@ -174,7 +185,7 @@ body::after {
 }
 
 .title-en {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'MonumentValley12-X55o', 'Cormorant Garamond', serif;
   font-weight: 300;
   font-size: clamp(2.6rem, 9vw, 4.2rem);
   letter-spacing: .14em;
@@ -184,8 +195,8 @@ body::after {
 }
 
 .title-zh {
-  font-family: 'Noto Serif TC', serif;
-  font-weight: 300;
+  font-family: 'PingFang TC', 'PingFang SC', 'Heiti TC', 'Microsoft JhengHei', sans-serif;
+  font-weight: 400;
   font-size: clamp(1.15rem, 3.58vw, 1.47rem);
   letter-spacing: .38em;
   color: var(--ink-soft);
